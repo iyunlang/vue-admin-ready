@@ -5,3 +5,7 @@ export function is(val: unknown, type: string) {
 export function isString(val: unknown): val is string {
   return is(val, 'String')
 }
+
+export function isObject(val: unknown): val is object {
+  return is(val, 'Object')
+}

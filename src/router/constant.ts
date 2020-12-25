@@ -12,3 +12,5 @@ export const LAYOUT = import('/@/layouts/default/index.vue')
 //     })
 //   }
 // }
+
+export const REDIRECT_NAME = 'Redirect';

@@ -1,17 +1,18 @@
-import messages from 'globby?locale!/@/locales/lang/**/*.@(ts)';
+// import messages from 'globby?locale!/@/locales/lang/**/*.@(ts)';
+const messages = {}
 
-// import type { DropMenu } from '/@/components/Dropdown';
+import type { DropMenu } from '/@/components/Dropdown';
 
-// // locale list
-// export const localeList: DropMenu[] = [
-//   {
-//     text: '简体中文',
-//     event: 'zh_CN',
-//   },
-//   {
-//     text: 'English',
-//     event: 'en',
-//   },
-// ];
+// locale list
+export const localeList: DropMenu[] = [
+  {
+    text: '简体中文',
+    event: 'zh_CN',
+  },
+  {
+    text: 'English',
+    event: 'en',
+  },
+];
 
 export default messages;

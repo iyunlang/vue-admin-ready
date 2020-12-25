@@ -2,20 +2,22 @@ import { computed, unref } from 'vue';
 
 import { appStore } from '/@/store/modules/app';
 
-const getLang = computed(() => '')
+import type { LocaleSetting } from '/@/types/config';
+import getProjectSetting from '/@/settings/projectSetting';
+import { localeList } from '/@/locales';
 
-const getLocale = computed(() => '')
+const getLocale = computed(() => appStore.getProjectConfigState?.locale || getProjectSetting.locale)
 
-const localeList = computed(() => '')
+const getLang = computed(() => unref(getLocale).lang)
 
-const getShowLocale = computed(() => '')
+const getShowLocale = computed(() => unref(getLocale).show)
 
-const getAvailableLocales = computed(() => '')
+const getAvailableLocales = computed(() => unref(getLocale).availableLocales)
 
-const getFallbackLocale = computed(() => '')
+const getFallbackLocale = computed(() => unref(getLocale).fallback)
 
-function setLocale(): void {
-
+function setLocale(locale: Partial<LocaleSetting>): void {
+  appStore.commitProjectConfigState({ locale })
 }
 
 export function useLocaleSetting() {

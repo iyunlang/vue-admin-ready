@@ -1,15 +1,17 @@
 <template>
     <p>vue</p>
-    <icon icon="bx:bx-home"></icon>
+    <Application>
+        Application的slot
+    </Application>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Icon from '/@/components/Icon'
+import { AppProvider } from '/@/components/Application'
 export default defineComponent({
     name: 'App',
     components: {
-        Icon
+        AppProvider
     }
 })
 </script>
