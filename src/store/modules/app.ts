@@ -36,7 +36,7 @@ class App extends VuexModule {
         return this.pageLoadingState
     }
 
-    get getProjectConfigState() {
+    get getProjectConfig() {
         return this.projectConfig
     }
 

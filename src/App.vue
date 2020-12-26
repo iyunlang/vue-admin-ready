@@ -1,7 +1,7 @@
 <template>
     <p>vue</p>
     <Application>
-        Application的slot
+        <div>Application的slot</div>
     </Application>
 </template>
 

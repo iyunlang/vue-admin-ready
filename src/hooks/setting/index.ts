@@ -1,4 +1,6 @@
-import type { GlobConfig, GlobEnvConfig } from '/@/types/config';
+import type { ProjectConfig, GlobConfig, GlobEnvConfig } from '/@/types/config';
+
+import getProjectSetting from '/@/settings/projectSetting';
 import { getGlobEnvConfig, isDevMode } from '/@/utils/env';
 // import { getShortName } from '../../../build/getShortName';
 // const ENV_NAME = getShortName(import.meta.env);
@@ -27,3 +29,9 @@ export const useGlobSetting = (): Readonly<GlobConfig> => {
     };
     return glob as Readonly<GlobConfig>;
   };
+
+  export const useProjectSetting = (): ProjectConfig => {
+    // TODO computed
+    return getProjectSetting;
+  };
+  
