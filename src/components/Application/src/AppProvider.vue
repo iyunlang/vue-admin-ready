@@ -1,5 +1,4 @@
 <template>
-    <p>4444</p>
     <slot />
 </template>
 
@@ -7,6 +6,7 @@
 import { defineComponent } from 'vue'
 export default defineComponent({
     name: 'Application',
+    inheritAttrs: false,
     setup() {
 
         return {}

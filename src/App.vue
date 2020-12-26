@@ -1,17 +1,22 @@
 <template>
     <p>vue</p>
-    <Application>
-        <div>Application的slot</div>
-    </Application>
+    <AppProvider>
+        <router-view />
+    </AppProvider>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { AppProvider } from '/@/components/Application'
+console.log(AppProvider)
 export default defineComponent({
     name: 'App',
     components: {
         AppProvider
+    },
+    setup() {
+
+        return {}
     }
 })
 </script>
