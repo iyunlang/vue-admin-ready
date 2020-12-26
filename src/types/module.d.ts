@@ -1,4 +1,4 @@
-declare module 'ant-design-vue/es/locale/zh_CN';
+declare module 'element-plus/es/locale/zh_CN';
 
 declare module 'globby!/@/router/routes/modules/**/*.@(ts)';
 

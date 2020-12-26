@@ -31,6 +31,31 @@ export interface RouteMeta {
   single?: boolean;
 }
 
+export interface Menu {
+  name: string;
+
+  icon?: string;
+
+  path: string;
+
+  disabled?: boolean;
+
+  children?: Menu[];
+
+  orderNo?: number;
+
+  roles?: RoleEnum[];
+
+  meta?: Partial<RouteMeta>;
+
+  tag?: MenuTag;
+}
+
+export interface MenuModule {
+  orderNo?: number;
+  menu: Menu;
+}
+
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   name: string;
   meta: RouteMeta;

@@ -7,6 +7,9 @@ import { wrapperEnv } from './build/utils'
 import { createProxy } from './build/vite/proxy'
 import { modifyVars } from './build/config/sassModifyVars'
 
+import globbyTransform from './build/vite/plugin/transform/globby';
+import dynamicImportTransform from './build/vite/plugin/transform/dynamic-import';
+
 const pathResolve = (pathStr: string) => {
   return resolve(__dirname, pathStr);
 };
@@ -96,6 +99,16 @@ export default (mode: 'development' | 'production'): UserConfig => {
         javascriptEnabled: true,
       },
     },
+
+    transforms: [
+      globbyTransform({
+        resolvers: resolvers,
+        root: root,
+        alias: alias,
+        includes: [resolve('src/router'), resolve('src/locales')],
+      }),
+      dynamicImportTransform(VITE_DYNAMIC_IMPORT),
+    ],
 
     // The package will be recompiled using rollup, and the new package compiled into the esm module specification will be put into node_modules/.vite_opt_cache
     optimizeDeps: {
