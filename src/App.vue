@@ -1,5 +1,4 @@
 <template>
-    <p>vue</p>
     <AppProvider>
         <router-view />
     </AppProvider>
@@ -8,7 +7,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { AppProvider } from '/@/components/Application'
-console.log(AppProvider)
 export default defineComponent({
     name: 'App',
     components: {
