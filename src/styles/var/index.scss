@@ -1,0 +1,24 @@
+@import '../color.scss';
+
+// header
+$header-height: 50px;
+
+// logo
+$logo-width: 32px;
+
+$page-loading-z-index: 10000;
+
+$lock-page-z-index: 3000;
+
+$layout-header-fixed-z-index: 500;
+
+$multiple-tab-fixed-z-index: 505;
+
+$layout-sider-fixed-z-index: 510;
+
+$layout-mix-sider-fixed-z-index: 550;
+
+$page-footer-z-index: 99;
+
+// left-menu
+$app-menu-item-height: 42px;

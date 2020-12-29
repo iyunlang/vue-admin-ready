@@ -1,0 +1,16 @@
+.el-input {
+  // width: 100%;
+  // height: 46px;
+  .el-input__inner {
+    // height: 100%;
+  }
+}
+.el-button {
+  height: 40px;
+  font-size: 18px;
+  letter-spacing: 6px;
+  &.el-button--primary {
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
+}

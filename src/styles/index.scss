@@ -1,5 +1,113 @@
+@import './var/index.scss';
+@import './elmentPlus/index.scss';
 @import './icon.scss';
 
+html {
+  z-index: 1;
+  background-color: #fff !important;
+}
+
+html {
+  overflow: hidden;
+}
+
+#app,
+html,
 body {
-  color: red;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+
+  &.color-weak {
+    filter: invert(80%);
+  }
+
+  &.gray-mode {
+    filter: grayscale(100%);
+    filter: progid:dximagetransform.microsoft.basicimage(grayscale=1);
+  }
+}
+
+
+// remove the clear button of a text input control in IE10+
+input::-ms-clear,
+input::-ms-reveal {
+  display: none;
+}
+
+body {
+  font-family: 'BlinkMacSystemFont,segoe ui,Microsoft YaHei,Arial,sans-serif,Helvetica Neue,Helvetica,Pingfang SC,Hiragino Sans GB,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.428571429; // 20/14
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left; // Fallback for where `start` is not supported
+  text-align: start;
+  text-decoration: none;
+  text-size-adjust: 100%;
+  text-shadow: none;
+  text-transform: none;
+  word-break: normal;
+  word-wrap: normal;
+  white-space: normal;
+  line-break: auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  color: $heading-color;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+img {
+  vertical-align: top;
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+i,
+em {
+  font-style: normal;
+}
+
+button,
+div:focus {
+  outline: none !important;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  vertical-align: baseline !important;
 }

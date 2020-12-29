@@ -1,0 +1,52 @@
+:root {
+
+}
+
+// --------------------------------
+// ------------ 主题颜色 -----------
+// --------------------------------
+$color-main: #8e83bc;
+$color-main-light: #EBD9DD;
+$color-sub-green: #2ECC71;
+$color-sub-blue: #4FC1E9;
+$color-sub-blue-dark: #3BAFDA;
+$color-sub-yellow: #FFCE54;
+$color-sub-orange: #FC6E51;
+
+$color-primary: $color-sub-blue;
+$color-success: $color-sub-green;
+$color-warning: $color-sub-yellow;
+$color-error: $color-sub-orange;
+
+// --------------------------------
+// ------------ 边框 --------------
+// --------------------------------
+$border-color-dark: #898788;
+
+$border-color-shallow-dark: #ABABAC;
+
+$border-color-light: #E0E0E1; 
+
+$border-color-shallow-light: #FEFEFE; 
+
+// --------------------------------
+// ------------ 背景 ------------
+// --------------------------------
+$bg-color-lg-r:  linear-gradient(to right, $color-sub-blue, $color-sub-yellow);
+$bg-color-lg-b:  linear-gradient(to bottom, $color-sub-blue, $color-sub-yellow);
+$bg-color-lg-rb:  linear-gradient(to right bottom, $color-sub-blue, $color-sub-yellow);
+
+// --------------------------------
+// ------------ 头部 导航 ----------
+// --------------------------------
+$header-color: $color-main;
+
+// --------------------------------
+// ------------ 文字 --------------
+// --------------------------------
+$heading-color: #323133;
+
+//登陆页面背景
+$login-bg: linear-gradient(to right bottom, #0093E9, #80D0C7);
+$login-hello: #1ba0ec;
+

@@ -5,6 +5,7 @@ import { setupRouter } from '/@/router'
 import { setupI18n } from '/@/setup/i18n'
 import { setupElementPlus } from '/@/setup/elementPuls'
 
+// import '//at.alicdn.com/t/font_2101671_40p2ivrq6wr.css'
 import './styles/index.scss'
 
 

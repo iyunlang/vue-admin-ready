@@ -1,70 +1,187 @@
 <template>
   <div class="login">
-    <div class="login-warp">
-      <div class="form-row">
-        <el-input
-          size="medium"
-          placeholder="请输入管理员"
-          v-model="username">
-          <template #prefix>
-            <!-- <i class="el-input__icon el-icon-search"></i> -->
-            <i class="iconfont icon-yonghuming"></i>
-          </template>
-        </el-input>
+    <div class="login-container">
+      <div class="login-text">
+        <p class="hello">欢迎来到</p>
+        <h1 class="title">vue-admin-ready</h1>
       </div>
-      <div class="form-row">
-        <el-input
-          size="medium"
-          type="password"
-          placeholder="请输入6位密码"
-          v-model="username">
-          <template #prefix>
-            <i class="el-input__icon el-icon-search"></i>
-          </template>
-        </el-input>
-      </div>
-      <div class="form-row">
-        <el-button type="primary">登录</el-button>
+      <div class="login-warp">
+        <el-form>
+          <el-form-item>
+            <el-input
+              size="medium"
+              placeholder="请输入管理员"
+              v-model="user.username">
+              <template #prefix>
+                <i class="el-input__icon iconfont icon-icon-test25"></i>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input
+              size="medium"
+              type="password"
+              placeholder="请输入6位密码"
+              v-model="user.password">
+              <template #prefix>
+                <i class="el-input__icon iconfont icon-icon-test23"></i>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary">登录</el-button>
+          </el-form-item>
+        </el-form>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, reactive, unref, ref, toRaw } from 'vue';
+
+  import { userStore } from '/@/store/modules/user';
 
   export default defineComponent({
     components: {
       
     },
+    data() {
+      return {
+        user: {
+          username: '',
+          password: ''
+        }
+      }
+    },
     setup() {
-      return {}
+      const formRef = ref<any>(null);
+      const autoLoginRef = ref(true);
+
+      const formData = reactive({
+        account: 'vben',
+        password: '123456',
+        // verify: undefined,
+      });
+
+      const formState = reactive({
+        loading: false,
+      });
+
+      async function handleLogin() {
+        const form = unref(formRef);
+        if(!form) return; 
+        formState.loading = true;
+        try {
+          const data = await form.validate();
+          const userInfo = await userStore.login(
+            toRaw({
+              password: data.password,
+              username: data.account,
+            })
+          );
+        } catch (error) {
+        } finally {
+          // resetVerify();
+          formState.loading = false;
+        }
+      }
+
+      return {
+        formData,
+        handleLogin,
+        formState,
+        login: handleLogin,
+        autoLogin: autoLoginRef,
+      }
     },
   });
 </script>
 <style lang="scss" scope>
+@import '../../../styles/var/index.scss';
 .iconfont {
   color: #1A5BA4;
 }
-.login-warp {
+.login {
   position: absolute;
-  padding-top: 60px;
-  padding-bottom: 70px;
-  width: 220px;
-  .form-row {
-    margin-bottom: 20px;
-    width: 100%;
-    .el-input {
-      width: 100%;
-      height: 46px;
-      .el-input__inner {
-        height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  background: $login-bg;
+
+  &-container {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 120px;
+
+    .login-text {
+      float: left;
+      overflow: hidden;
+      margin-left: 50px;
+
+      .title {
+        color: #fff;
+        font-size: 35px;
+      }
+      .hello {
+        color: $login-hello;
+        font-size: 22px;
+        margin-top: 80px;
       }
     }
-    .el-button {
-      width: 100%;
-      height: 50px;
-      font-size: 18px;
-      letter-spacing: 6px;
+    .login-warp {
+      float: right;
+      overflow: hidden;
+      margin-right: 50px;
+      width: 390px;
+      background-color: #fff;
+      border-radius: 6px;
+
+      .el-form {
+        padding: 30px 30px 24px 24px;
+
+        .el-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 968px){
+  .login {
+    &-container {
+      .login-text {
+        display: none;
+      }
+      .login-warp {
+        margin: 0;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px){
+  .login {
+    &-container {
+      .login-text {
+        display: none;
+      }
+      .login-warp {
+        margin: 0;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+      }
     }
   }
 }
