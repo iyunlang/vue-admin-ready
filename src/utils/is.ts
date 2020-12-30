@@ -16,3 +16,11 @@ export const isUrl = (path: string): boolean => {
 };
 
 export const isFunction = (val: unknown): val is Function => typeof val === 'function';
+
+export function isNumber(val: unknown): val is number {
+  return is(val, 'Number');
+}
+
+export function isArray(val: any): val is Array<any> {
+  return val && Array.isArray(val);
+}

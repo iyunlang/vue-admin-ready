@@ -6,30 +6,30 @@
         <h1 class="title">vue-admin-ready</h1>
       </div>
       <div class="login-warp">
-        <el-form>
-          <el-form-item>
+        <el-form :model="formData" :rules="formRules" ref="formRef">
+          <el-form-item name="username">
             <el-input
               size="medium"
               placeholder="请输入管理员"
-              v-model="user.username">
+              v-model="formData.username">
               <template #prefix>
                 <i class="el-input__icon iconfont icon-icon-test25"></i>
               </template>
             </el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item name="password">
             <el-input
               size="medium"
               type="password"
               placeholder="请输入6位密码"
-              v-model="user.password">
+              v-model="formData.password">
               <template #prefix>
                 <i class="el-input__icon iconfont icon-icon-test23"></i>
               </template>
             </el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary">登录</el-button>
+            <el-button type="primary" @click="login">登录</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -58,25 +58,31 @@
       const autoLoginRef = ref(true);
 
       const formData = reactive({
-        account: 'vben',
+        username: 'admin',
         password: '123456',
-        // verify: undefined,
       });
 
       const formState = reactive({
         loading: false,
       });
 
+      const formRules = reactive({
+        account: [{ required: true, message: '', trigger: 'blur' }],
+        password: [
+          { required: true, message: '', trigger: 'blur' },
+        ],
+      });
+
       async function handleLogin() {
         const form = unref(formRef);
-        if(!form) return; 
+        // if(!form) return; 
         formState.loading = true;
         try {
-          const data = await form.validate();
+          // const data = await form.validate();
           const userInfo = await userStore.login(
             toRaw({
-              password: data.password,
-              username: data.account,
+              password: formData.password,
+              username: formData.username,
             })
           );
         } catch (error) {
@@ -88,6 +94,7 @@
 
       return {
         formData,
+        formRules,
         handleLogin,
         formState,
         login: handleLogin,

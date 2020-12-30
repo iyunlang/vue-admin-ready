@@ -1,4 +1,5 @@
 import type { LocaleType } from '/@/locales/types';
+import { ContentEnum, PermissionModeEnum, ThemeEnum, RouterTransitionEnum } from '/@/enums/appEnum';
 
 export interface LocaleSetting {
   show: boolean;
@@ -10,10 +11,28 @@ export interface LocaleSetting {
   availableLocales: LocaleType[];
 }
 
-export interface ProjectConfig {
-  transitionSetting: TransitionSetting;
+export interface MultiTabsSetting {
+  // 是否显示
+  show: boolean;
+  // 开启快速操作
+  showQuick: boolean;
+  canDrag: boolean;
 
-  permissionCacheType: CacheTypeEnum;
+  // 显示刷新按钮
+  showRedo: boolean;
+}
+
+export interface ProjectConfig {
+  // 是否显示配置按钮
+  showSettingButton: boolean;
+  // 多标签页设置
+  multiTabsSetting: MultiTabsSetting;
+  
+  transitionSetting: TransitionSetting,
+  // 权限模式
+  permissionMode: PermissionModeEnum,
+  // 权限缓存类型
+  permissionCacheType: CacheTypeEnum,
   // 设置element-plus组件大小samll 
   elementPlusSize: String,
   // 设置element-plus弹框初始z-index
@@ -24,6 +43,12 @@ export interface ProjectConfig {
   closeMessageOnSwitch: boolean;
   // 切换界面的时候是否取消已经发送但是未响应的http请求。
   removeAllHttpPending: boolean;
+  // 是否开启色弱模式
+  colorWeak: boolean;
+  // 主题色
+  themeColor?: string;
+  // 网站灰色模式，用于可能悼念的日期开启
+  grayMode: boolean;
 }
 
 export interface GlobConfig {

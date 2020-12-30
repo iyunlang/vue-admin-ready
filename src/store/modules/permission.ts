@@ -12,9 +12,7 @@ import { userStore } from '/@/store/modules/user';
 import { asyncRoutes } from '/@/router/routes';
 import { filter } from '/@/utils/helper/treeHelper';
 import { toRaw } from 'vue';
-// import { getMenuListById } from '/@/api/sys/menu';
-
-const getMenuListById = 1
+import { getMenuListById } from '/@/api/sys/menu';
 
 import { transformObjToRoute } from '/@/router/helper/routeHelper';
 import { transformRouteToMenu } from '/@/router/helper/menuHelper';
@@ -92,6 +90,8 @@ class Permission extends VuexModule {
 
     const { permissionMode } = appStore.getProjectConfig;
 
+    console.log(3, appStore.getProjectConfig)
+    console.log(2, permissionMode)
     // role permissions
     if (permissionMode === PermissionModeEnum.ROLE) {
       routes = filter(asyncRoutes, (route) => {
@@ -100,26 +100,27 @@ class Permission extends VuexModule {
         if (!roles) return true;
         return roleList.some((role) => roles.includes(role));
       });
+      console.log(1, routes)
       //  如果确定不需要做后台动态权限,请将下面整个判断注释
-    } else if (permissionMode === PermissionModeEnum.BACK) {
-      // createMessage.loading({
-      //   content: t('sys.app.menuLoading'),
-      //   duration: 1,
-      // });
-      // 这里获取后台路由菜单逻辑自行修改
-      const paramId = id || userStore.getUserInfoState.userId;
-      if (!paramId) {
-        throw new Error('paramId is undefined!');
-      }
-      let routeList: any[] = await getMenuListById({ id: paramId });
-      // 动态引入组件
-      routeList = transformObjToRoute(routeList);
-      //  后台路由转菜单结构
-      const backMenuList = transformRouteToMenu(routeList);
+    // } else if (permissionMode === PermissionModeEnum.BACK) {
+    //   // createMessage.loading({
+    //   //   content: t('sys.app.menuLoading'),
+    //   //   duration: 1,
+    //   // });
+    //   // 这里获取后台路由菜单逻辑自行修改
+    //   const paramId = id || userStore.getUserInfoState.userId;
+    //   if (!paramId) {
+    //     throw new Error('paramId is undefined!');
+    //   }
+    //   let routeList: any[] = await getMenuListById({ id: paramId });
+    //   // 动态引入组件
+    //   routeList = transformObjToRoute(routeList);
+    //   //  后台路由转菜单结构
+    //   const backMenuList = transformRouteToMenu(routeList);
 
-      this.commitBackMenuListState(backMenuList);
+    //   this.commitBackMenuListState(backMenuList);
 
-      routes = routeList;
+    //   routes = routeList;
     }
     return routes;
   }

@@ -28,7 +28,7 @@ class App extends VuexModule {
 
     private pageLoadingState = false;
 
-    private projectConfig: ProjectConfig | null = getLocal(PROJ_CFG_KEY)
+    private projectConfigState: ProjectConfig | null = getLocal(PROJ_CFG_KEY)
 
     private lockMainScrollState = false
 
@@ -36,8 +36,9 @@ class App extends VuexModule {
         return this.pageLoadingState
     }
 
-    get getProjectConfig() {
-        return this.projectConfig
+    get getProjectConfig(): ProjectConfig {
+        console.log(4, this.projectConfigState)
+        return this.projectConfigState || ({} as ProjectConfig)
     }
 
     get getLockMainScrollState() {
@@ -56,8 +57,9 @@ class App extends VuexModule {
 
     @Mutation
     commitProjectConfigState(proCfg: DeepPartial<ProjectConfig>): void {
-        this.projectConfig = deepMerge(this.projectConfig || {}, proCfg);
-        setLocal(PROJ_CFG_KEY, this.projectConfig)
+        console.log(7, this.projectConfigState)
+        this.projectConfigState = deepMerge(this.projectConfigState || {}, proCfg);
+        setLocal(PROJ_CFG_KEY, this.projectConfigState)
     }
 
     @Action

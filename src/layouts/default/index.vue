@@ -1,20 +1,20 @@
 <template>
-  
+    <LayoutFeatures />
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { registerGlobalCom } from '/@/components/registerGlobalCom'
-export default defineComponent({
-  name: 'DefaultLayout',
-  components: {
+  import { defineComponent } from 'vue';
+  import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
 
-  },
-  setup() {
-    registerGlobalCom()
-    return {
+  export default defineComponent({
+    name: 'DefaultLayout',
+    components: {
+      LayoutFeatures: createAsyncComponent(() => import('/@/layouts/default/feature/index.vue')),
+    },
+    setup() {
 
-    }
-  }
-})
+      return {
+
+      };
+    },
+  });
 </script>

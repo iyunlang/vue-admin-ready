@@ -4,7 +4,7 @@ import ParentLayout from '/@/layouts/page/ParentView.vue';
 
 const EXCEPTION_COMPONENT = () => import('../views/sys/exception/Exception');
 
-export const LAYOUT = import('/@/layouts/default/index.vue')
+export const LAYOUT = () => import('/@/layouts/default/index.vue')
 
 export const getParentLayout = (name: string) => {
   return () => {

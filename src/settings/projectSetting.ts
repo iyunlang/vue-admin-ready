@@ -1,16 +1,24 @@
 import type { ProjectConfig } from '/@/types/config';
 
 import { CacheTypeEnum } from '/@/enums/cacheEnum';
-import { elementPlusSizeEnum, RouterTransitionEnum } from '/@/enums/appEnum';
+import { elementPlusSizeEnum, PermissionModeEnum, RouterTransitionEnum } from '/@/enums/appEnum';
 
 // ! You need to clear the browser cache after the change
 const setting: ProjectConfig = {
+  // 是否显示配置按钮
+  showSettingButton: true,
+  // Permission mode
+  permissionMode: PermissionModeEnum.ROLE,
   // Permission-related cache is stored in sessionStorage or localStorage
   permissionCacheType: CacheTypeEnum.LOCAL,
   // 设置element-plus组件大小samll 
   elementPlusSize: elementPlusSizeEnum.SM,
   // 设置element-plus弹框初始z-index
   zIndex: 3000,
+
+  colorWeak: false,
+
+  grayMode: false,
 
   // locale setting
   locale: {
@@ -38,6 +46,19 @@ const setting: ProjectConfig = {
 
     // Whether to open the top progress bar
     openNProgress: false,
+  },
+
+  // Multi-label
+  multiTabsSetting: {
+    // Turn on
+    show: true,
+    // Is it possible to drag and drop sorting tabs
+    canDrag: true,
+    // Turn on quick actions
+    showQuick: true,
+
+    // Whether to show the refresh button
+    showRedo: true,
   },
 
   // 切换界面的时候是否删除未关闭的message及notify

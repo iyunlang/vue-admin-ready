@@ -10,11 +10,13 @@ import { t } from '/@/hooks/web/useI18n';
 const routeModuleList: AppRouteRecordRaw[] = []
 
 Object.keys(modules).forEach((key) => {
-  const mod = Array.isArray(modules[key]) ? [...modules[key]] : [modules]
+  const mod = Array.isArray(modules[key]) ? [...modules[key]] : [modules[key]]
   routeModuleList.push(...mod)
 })
 
 export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModuleList];
+
+console.log(asyncRoutes)
 
 export const RootRoute: AppRouteRecordRaw = {
   path: '/',
