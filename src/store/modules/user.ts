@@ -101,19 +101,28 @@ class User extends VuexModule {
     ): Promise<GetUserInfoByUserIdModel | null> {
         try {
         const { goHome = true, mode, ...loginParams } = params;
-        const data = await loginApi(loginParams, mode);
+        // const data = await loginApi(loginParams, mode);
 
-        const { token, userId } = data;
-        // get user info
-        const userInfo = await this.getUserInfoAction({ userId });
+        // const { token, userId } = data;
+        // // get user info
+        // const userInfo = await this.getUserInfoAction({ userId });
 
-        // save token
-        this.commitTokenState(token);
+        // // save token
+        // this.commitTokenState(token);
 
         // const name = FULL_PAGE_NOT_FOUND_ROUTE.name;
         // name && router.removeRoute(name);
         goHome && (await router.replace(PageEnum.BASE_HOME));
-        return userInfo;
+        // return userInfo;
+        return {
+            username: loginParams.username,
+            userId: 1,
+            role: {
+                roleName: 'super',
+                value: 'super'
+            },
+            realName: 'linjieyun',
+        }
         } catch (error) {
         return null;
         }

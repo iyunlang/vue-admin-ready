@@ -55,7 +55,7 @@
     },
     setup() {
       const formRef = ref<any>(null);
-      const autoLoginRef = ref(true);
+      const autoLoginRef = ref(false);
 
       const formData = reactive({
         username: 'admin',

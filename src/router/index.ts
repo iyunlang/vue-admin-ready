@@ -9,6 +9,8 @@ import { REDIRECT_NAME } from './constant';
 
 export const hashRouter = createWebHashHistory();
 
+console.log(basicRoutes)
+
 const router = createRouter({
     history: hashRouter,
     routes: basicRoutes as RouteRecordRaw[],
@@ -30,5 +32,7 @@ export function setupRouter(app: App<Element>): void {
     app.use(router)
     createGuard(router);
 }
+
+console.log(router.getRoutes())
 
 export default router

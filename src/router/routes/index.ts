@@ -8,7 +8,6 @@ import { PageEnum } from '/@/enums/pageEnum.ts'
 import { t } from '/@/hooks/web/useI18n';
 
 const routeModuleList: AppRouteRecordRaw[] = []
-
 Object.keys(modules).forEach((key) => {
   const mod = Array.isArray(modules[key]) ? [...modules[key]] : [modules[key]]
   routeModuleList.push(...mod)
@@ -36,5 +35,7 @@ export const LoginRoute: AppRouteRecordRaw = {
   },
 };
 
+
 // 基础路由 不用权限
 export const basicRoutes = [ LoginRoute, RootRoute, REDIRECT_ROUTE ];
+console.log(basicRoutes)
