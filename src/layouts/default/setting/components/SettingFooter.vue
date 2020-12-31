@@ -13,7 +13,6 @@ export default defineComponent({
 
     function handleResetSetting() {
       try {
-        console.log(5, defaultSetting)
         appStore.commitProjectConfigState(defaultSetting);
         // const { colorWeak, grayMode } = defaultSetting;
         // updateTheme(themeColor);

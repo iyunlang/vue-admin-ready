@@ -55,11 +55,11 @@ export function updateHeaderBgColor(color: string) {
   // Determine the depth of the color value and automatically switch the theme
   const isDark = colorIsDark(color);
 
-  // appStore.commitProjectConfigState({
-  //   headerSetting: {
-  //     theme: isDark ? ThemeEnum.DARK : ThemeEnum.LIGHT,
-  //   },
-  // });
+  appStore.commitProjectConfigState({
+    headerSetting: {
+      theme: isDark ? ThemeEnum.DARK : ThemeEnum.LIGHT,
+    },
+  });
 }
 
 /**

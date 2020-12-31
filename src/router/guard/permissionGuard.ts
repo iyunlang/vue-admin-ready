@@ -58,12 +58,10 @@ export function createPermissionGuard(router: Router) {
       return;
     }
     const routes = await permissionStore.buildRoutesAction();
-    console.log(routes)
     routes.forEach((route) => {
       // router.addRoute(RootRoute.name!, route as RouteRecordRaw);
       router.addRoute(route as RouteRecordRaw);
     });
-    console.log(routes)
     const redirectPath = (from.query.redirect || to.path) as string;
     const redirect = decodeURIComponent(redirectPath);
     const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };

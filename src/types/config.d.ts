@@ -1,6 +1,25 @@
 import type { LocaleType } from '/@/locales/types';
 import { ContentEnum, PermissionModeEnum, ThemeEnum, RouterTransitionEnum } from '/@/enums/appEnum';
 
+export interface MenuSetting {
+  bgColor: string;
+  fixed: boolean;
+  collapsed: boolean;
+  canDrag: boolean;
+  show: boolean;
+  hidden: boolean;
+  split: boolean;
+  menuWidth: number;
+  mode: MenuModeEnum;
+  type: MenuTypeEnum;
+  theme: ThemeEnum;
+  topMenuAlign: 'start' | 'center' | 'end';
+  trigger: TriggerEnum;
+  accordion: boolean;
+  closeMixSidebarOnChange: boolean;
+  collapsedShowTitle: boolean;
+}
+
 export interface LocaleSetting {
   show: boolean;
   // Current language
@@ -23,6 +42,19 @@ export interface MultiTabsSetting {
 }
 
 export interface ProjectConfig {
+  // 头部设置
+  headerSetting: headerSetting;
+  // 显示面包屑
+  showBreadCrumb: boolean;
+  // 显示面包屑图标
+  showBreadCrumbIcon: boolean;
+  // 是否显示logo
+  showLogo: boolean;
+  showFooter: boolean;
+  // menuType: MenuTypeEnum;
+  menuSetting: MenuSetting;
+  // 全屏显示主界面,不显示菜单,及顶部
+  fullContent: boolean;
   // 是否显示配置按钮
   showSettingButton: boolean;
   // 多标签页设置
@@ -83,4 +115,22 @@ export interface TransitionSetting {
 
   // Whether to open the top progress bar
   openNProgress: boolean;
+}
+
+export interface HeaderSetting {
+  bgColor: string;
+  fixed: boolean;
+  show: boolean;
+  theme: ThemeEnum;
+
+  // 显示全屏按钮
+  showFullScreen: boolean;
+  // 开启全屏功能
+  useLockPage: boolean;
+  // 显示文档按钮
+  showDoc: boolean;
+  // 显示消息中心按钮
+  showNotice: boolean;
+
+  showSearch: boolean;
 }

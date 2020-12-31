@@ -15,8 +15,6 @@ Object.keys(modules).forEach((key) => {
 
 export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModuleList];
 
-console.log(asyncRoutes)
-
 export const RootRoute: AppRouteRecordRaw = {
   path: '/',
   name: 'Root',
@@ -38,4 +36,3 @@ export const LoginRoute: AppRouteRecordRaw = {
 
 // 基础路由 不用权限
 export const basicRoutes = [ LoginRoute, RootRoute, REDIRECT_ROUTE ];
-console.log(basicRoutes)

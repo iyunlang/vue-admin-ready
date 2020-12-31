@@ -90,8 +90,6 @@ class Permission extends VuexModule {
 
     const { permissionMode } = appStore.getProjectConfig;
 
-    console.log(3, appStore.getProjectConfig)
-    console.log(2, permissionMode)
     // role permissions
     if (permissionMode === PermissionModeEnum.ROLE) {
       routes = filter(asyncRoutes, (route) => {
@@ -100,7 +98,6 @@ class Permission extends VuexModule {
         if (!roles) return true;
         return roleList.some((role) => roles.includes(role));
       });
-      console.log(1, routes)
       //  如果确定不需要做后台动态权限,请将下面整个判断注释
     // } else if (permissionMode === PermissionModeEnum.BACK) {
     //   // createMessage.loading({

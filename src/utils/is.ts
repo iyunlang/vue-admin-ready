@@ -24,3 +24,15 @@ export function isNumber(val: unknown): val is number {
 export function isArray(val: any): val is Array<any> {
   return val && Array.isArray(val);
 }
+
+export function isNull(val: unknown): val is null {
+  return val === null;
+}
+
+export const isDef = <T = unknown>(val?: T): val is T => {
+  return typeof val !== 'undefined';
+};
+
+export const isUnDef = <T = unknown>(val?: T): val is T => {
+  return !isDef(val);
+};

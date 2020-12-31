@@ -14,6 +14,10 @@ const getRootSetting = computed((): RootSetting => appStore.getProjectConfig);
 
 const getShowSettingButton = computed(() => unref(getRootSetting).showSettingButton);
 
+const getShowBreadCrumb = computed(() => unref(getRootSetting).showBreadCrumb);
+
+const getShowLogo = computed(() => unref(getRootSetting).showLogo);
+
 function setRootSetting(setting: Partial<RootSetting>) {
   appStore.commitProjectConfigState(setting);
 }
@@ -23,5 +27,7 @@ export function useRootSetting() {
     setRootSetting,
 
     getShowSettingButton,
+    getShowBreadCrumb,
+    getShowLogo,
   };
 }

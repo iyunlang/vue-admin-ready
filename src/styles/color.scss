@@ -1,6 +1,18 @@
 :root {
+  // header
+  --header-bg-color: #394664;
+  --header-bg-hover-color: #273352;
+  --header-active-menu-bg-color: #273352;
 
+  // sider
+  --sider-dark-bg-color: #273352;
+  --sider-dark-darken-bg-color: #273352;
+  --sider-dark-lighten-1-bg-color: #273352;
+  --sider-dark-lighten-2-bg-color: #273352;
+  --sider-dark-lighten-3-bg-color: #273352;
 }
+
+$white: #fff;
 
 // --------------------------------
 // ------------ 主题颜色 -----------
@@ -39,7 +51,8 @@ $bg-color-lg-rb:  linear-gradient(to right bottom, $color-sub-blue, $color-sub-y
 // --------------------------------
 // ------------ 头部 导航 ----------
 // --------------------------------
-$header-color: $color-main;
+
+$header-light-bg-color: $color-main;
 
 // --------------------------------
 // ------------ 文字 --------------

@@ -81,7 +81,6 @@ export function usePermission() {
    * @param roles
    */
   async function changeRole(roles: RoleEnum | RoleEnum[]): Promise<void> {
-    console.log(6, appStore.getProjectConfig.permissionMode)
     if (appStore.getProjectConfig.permissionMode !== PermissionModeEnum.ROLE) {
       throw new Error(
         'Please switch PermissionModeEnum to ROLE mode in the configuration to operate!'
