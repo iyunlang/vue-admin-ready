@@ -17,18 +17,8 @@ $white: #fff;
 // --------------------------------
 // ------------ 主题颜色 -----------
 // --------------------------------
-$color-main: #8e83bc;
-$color-main-light: #EBD9DD;
-$color-sub-green: #2ECC71;
-$color-sub-blue: #4FC1E9;
-$color-sub-blue-dark: #3BAFDA;
-$color-sub-yellow: #FFCE54;
-$color-sub-orange: #FC6E51;
-
-$color-primary: $color-sub-blue;
-$color-success: $color-sub-green;
-$color-warning: $color-sub-yellow;
-$color-error: $color-sub-orange;
+// $color-main: #8e83bc;
+// $color-main-light: #EBD9DD;
 
 // --------------------------------
 // ------------ 边框 --------------
@@ -44,22 +34,45 @@ $border-color-shallow-light: #FEFEFE;
 // --------------------------------
 // ------------ 背景 ------------
 // --------------------------------
-$bg-color-lg-r:  linear-gradient(to right, $color-sub-blue, $color-sub-yellow);
-$bg-color-lg-b:  linear-gradient(to bottom, $color-sub-blue, $color-sub-yellow);
-$bg-color-lg-rb:  linear-gradient(to right bottom, $color-sub-blue, $color-sub-yellow);
-
-// --------------------------------
-// ------------ 头部 导航 ----------
-// --------------------------------
-
-$header-light-bg-color: $color-main;
+$bg-color-lg-r:  linear-gradient(to right, $primary-color, $warning-color);
+$bg-color-lg-b:  linear-gradient(to bottom, $primary-color, $warning-color);
+$bg-color-lg-rb:  linear-gradient(to right bottom, $primary-color, $warning-color);
 
 // --------------------------------
 // ------------ 文字 --------------
 // --------------------------------
 $heading-color: #323133;
 
+// Main text color
+$text-color-base: $text-color;
+
+// Label color
+$text-color-call-out: #606266;
+
+// Auxiliary information color-dark
+$text-color-help-dark: #909399;
+
+// Auxiliary information color-light color
+$text-color-help-light: #c0c4cc;
+
 //登陆页面背景
 $login-bg: linear-gradient(to right bottom, #0093E9, #80D0C7);
 $login-hello: #1b82bd;
+
+// ============ 组件 =============
+
+// --------------------------------
+// ------------ 头部 --------------
+$header-dark-bg-color: var(--header-bg-color);
+$header-dark-bg-hover-color: var(--header-bg-hover-color);
+$header-light-bg-hover-color: #f6f6f6;
+$header-light-desc-color: #7c8087;
+$header-light-bottom-border-color: #eee;
+
+// --------------------------------
+// ------------ 导航 --------------
+// 头部导航
+$top-menu-active-bg-color: var(--header-active-menu-bg-color);
+// 侧边导航
+
 

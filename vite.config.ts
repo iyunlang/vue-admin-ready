@@ -94,7 +94,7 @@ export default (mode: 'development' | 'production'): UserConfig => {
     },
 
     cssPreprocessOptions: {
-      sass: {
+      scss: {
         modifyVars: modifyVars,
         javascriptEnabled: true,
       },

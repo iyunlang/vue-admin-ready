@@ -1,9 +1,11 @@
 @import '../color.scss';
+@import './breakpoint.scss';
+@import './easing.scss';
 
 $namespace: vready;
 
 // header
-$header-height: 50px;
+$header-height: 48px;
 
 // logo
 $logo-width: 32px;

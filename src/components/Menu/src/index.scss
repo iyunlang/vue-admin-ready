@@ -1,0 +1,7 @@
+@import '../../../styles/index.scss';
+$basic-menu-prefix-cls: '#{$namespace}-basic-menu';
+
+.#{$basic-menu-prefix-cls} {
+    width: 100%;
+    height: 300px;
+}

@@ -1,0 +1,51 @@
+
+@mixin small( ) {
+    @media only screen and (min-width: $screen-sm-min) {
+        @content();
+    }
+}
+@mixin medium( ) {
+    @media only screen and (min-width: $screen-md-min) {
+        @content();
+    }
+}
+@mixin large( ) {
+    @media only screen and (min-width: $screen-lg-min) {
+        @content();
+    }
+}
+@mixin xlarge( ) {
+    @media only screen and (min-width: $screen-xl-min) {
+        @content();
+    }
+}
+@mixin xsmall-only( ) {
+    @media only screen and (min-width: $screen-xs-min) {
+        @content();
+    }
+}
+@mixin small-only( ) {
+    @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        @content();
+    }
+}
+@mixin medium-only( ) {
+    @media only screen and (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+        @content();
+    }
+}
+@mixin large-only( ) {
+    @media only screen and (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
+        @content();
+    }
+}
+@mixin xsmall-and-small( ) {
+    @media only screen and (max-width: $screen-sm-max) {
+        @content();
+    }
+}
+@mixin small-and-medium( ) {
+    @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+        @content();
+    }
+}

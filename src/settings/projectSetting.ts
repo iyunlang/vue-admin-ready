@@ -94,7 +94,7 @@ const setting: ProjectConfig = {
     // Menu mode
     mode: MenuModeEnum.INLINE,
     // Menu type
-    type: MenuTypeEnum.SIDEBAR,
+    type: MenuTypeEnum.MIX,
     // Menu theme
     theme: ThemeEnum.DARK,
     // Split menu
@@ -111,6 +111,8 @@ const setting: ProjectConfig = {
 
   // Header configuration
   headerSetting: {
+    // 头部高度
+    height: 48,
     // header bg color
     bgColor: '#ffffff',
     // Fixed at the top

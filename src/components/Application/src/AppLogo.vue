@@ -63,15 +63,38 @@ export default defineComponent({
 $prefix-cls: '#{$namespace}-app-logo';
 
 .#{$prefix-cls} {
+  display: flex;
+  align-items: center;
+  max-height: 60px;
+  padding-left: 7px;
+  cursor: pointer;
 
   &__img {
-    width: 40px;
-    height: 40px;
-    float: left;
+    width: 32px;
+    height: 32px;
+  }
+
+  &.light {
+    border-bottom: 1px solid $header-light-bottom-border-color;
+  }
+
+  &.light &__title {
+    color: $primary-color;
+  }
+
+  &.dark &__title {
+    color: $white;
   }
 
   &__title {
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 0;
+    transition: all 0.5s;
 
+    @include small() {
+      opacity: 1;
+    }
   }
 }
 

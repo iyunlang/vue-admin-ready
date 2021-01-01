@@ -4,6 +4,7 @@ import { computed, unref } from 'vue';
 
 import { appStore } from '/@/store/modules/app';
 
+
 import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 import { useFullContent } from '/@/hooks/web/useFullContent';
@@ -46,6 +47,8 @@ const getShowInsetHeaderRef = computed(() => {
 const getHeaderSetting = computed(() => appStore.getProjectConfig.headerSetting);
 
 const getShowDoc = computed(() => unref(getHeaderSetting).showDoc);
+
+const getHeaderHeight = computed(() => unref(getHeaderSetting).height);
 
 const getHeaderTheme = computed(() => unref(getHeaderSetting).theme);
 
@@ -90,6 +93,7 @@ export function useHeaderSetting() {
 
     getHeaderSetting,
 
+    getHeaderHeight,
     getShowDoc,
     getShowSearch,
     getHeaderTheme,

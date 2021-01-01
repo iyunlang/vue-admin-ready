@@ -1,6 +1,22 @@
+$main-color: #4FC1E9;
+
+$primary-color: $main-color; //  Global dominant color
+$info-color: $main-color; //  Default color
+$success-color: #2ECC71; //  Success color
+$error-color: #FC6E51; //  False color
+$warning-color: #FFCE54; //   Warning color
+$font-size-base: 14px; // 默认文字大小
+$text-color: rgba(0, 0, 0, 0.85);
+$link-color: $main-color;
+$background-color-base: #F0F2F5;
+$box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15);
+$border-color-base: #F0F0F0;
+$border-radius-base: 2px;
+
 @import './var/index.scss';
-@import './elmentPlus/index.scss';
 @import './icon.scss';
+@import './mixins.scss';
+@import './elmentPlus/index.scss';
 @import './var/index.scss';
 
 html {
@@ -18,6 +34,9 @@ body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  font-size: $font-size-base;
+  margin: 0;
+  padding: 0;
 
   &.color-weak {
     filter: invert(80%);

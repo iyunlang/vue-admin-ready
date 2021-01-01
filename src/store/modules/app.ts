@@ -37,6 +37,7 @@ class App extends VuexModule {
     }
 
     get getProjectConfig(): ProjectConfig {
+
         return this.projectConfigState || ({} as ProjectConfig)
     }
 
@@ -56,6 +57,7 @@ class App extends VuexModule {
 
     @Mutation
     commitProjectConfigState(proCfg: DeepPartial<ProjectConfig>): void {
+        console.log(444,proCfg , this.projectConfigState)
         this.projectConfigState = deepMerge(this.projectConfigState || {}, proCfg);
         setLocal(PROJ_CFG_KEY, this.projectConfigState)
     }

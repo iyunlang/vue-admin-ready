@@ -68,6 +68,9 @@ const getIsMixSidebar = computed(() => {
 });
 
 const getIsMixMode = computed(() => {
+  console.log( unref(getMenuSetting))
+  console.log(11,unref(getMenuMode),MenuModeEnum.INLINE)
+  console.log(11,unref(getMenuType),MenuTypeEnum.MIX)
   return unref(getMenuMode) === MenuModeEnum.INLINE && unref(getMenuType) === MenuTypeEnum.MIX;
 });
 

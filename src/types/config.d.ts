@@ -122,6 +122,7 @@ export interface HeaderSetting {
   fixed: boolean;
   show: boolean;
   theme: ThemeEnum;
+  height: number;
 
   // 显示全屏按钮
   showFullScreen: boolean;

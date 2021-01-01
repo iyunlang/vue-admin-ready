@@ -10,10 +10,43 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
   height: $header-height;
   padding: 0;
   margin-left: -1px;
-  line-height: $header-height;
   color: $white;
   background: $white;
   align-items: center;
   justify-content: space-between;
+
+  &--light {
+    background-color: $white;
+    border-bottom: 1px solid $header-light-bottom-border-color;
+  }
+
+  &--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: $layout-header-fixed-z-index;
+  }
+
+  &-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .#{$header-prefix-cls}-logo {
+      height: 100%;
+    }
+  }
+
+  &-logo {
+    padding: 0 10px;
+  }
+
+  &-action {
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+    height: 100%;
+  }
 
 }
