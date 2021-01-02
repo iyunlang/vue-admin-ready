@@ -100,6 +100,16 @@ export default (mode: 'development' | 'production'): UserConfig => {
       },
     },
 
+    optimizeDeps: {
+      include: [
+        // 'qs',
+        // 'echarts/map/js/china',
+        'element-plus/lib/locale/lang/zh-cn',
+        'element-plus/lib/locale/lang/en',
+        // '@ant-design/icons-vue',
+      ],
+    },
+
     transforms: [
       globbyTransform({
         resolvers: resolvers,
@@ -109,13 +119,5 @@ export default (mode: 'development' | 'production'): UserConfig => {
       }),
       dynamicImportTransform(VITE_DYNAMIC_IMPORT),
     ],
-
-    // The package will be recompiled using rollup, and the new package compiled into the esm module specification will be put into node_modules/.vite_opt_cache
-    optimizeDeps: {
-      include: [
-        // 'qs',
-        // 'echarts/map/js/china',
-      ],
-    },
   }
 }

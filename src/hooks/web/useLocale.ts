@@ -3,9 +3,11 @@ import { LocaleType } from '../../locales/types'
 import { getI18n } from '/@/setup/i18n';
 import { useLocaleSetting } from '/@/hooks/setting/useLocaleSetting';
 
-// import langZhCn from 'element-plus/lib/locale/lang/zh-cn'
-// import langEn from 'element-plus/lib/locale/lang/en'
-// import locale from 'element-plus/lib/locale'
+import moment from 'moment';
+
+import 'moment/dist/locale/zh-cn';
+
+moment.locale('zh-cn');
 
 const elemPlusConfigLocaleRef = ref<any>(null);
 
@@ -17,16 +19,16 @@ export function useLocale() {
     setLocalSetting({ lang })
     switch(lang) {
       case 'zh-cn':
-          // elemPlusConfigLocaleRef.value = langZhCn
-        // import('element-plus/lib/locale/lang/zh-cn').then((locale) => {
-        //   elemPlusConfigLocaleRef.value = locale.default
-        // })
+        import('element-plus/lib/locale/lang/zh-cn').then((locale) => {
+          elemPlusConfigLocaleRef.value = locale.default
+        })
+        moment.locale('cn');
         break;
       case 'en':
-          // elemPlusConfigLocaleRef.value = langEn
-        // import('element-plus/lib/locale/lang/en').then((locale) => {
-        //   elemPlusConfigLocaleRef.value = locale.default
-        // })
+        import('element-plus/lib/locale/lang/en').then((locale) => {
+          elemPlusConfigLocaleRef.value = locale.default
+        })
+        moment.locale('en-us');
         break;
       default:
         break;
@@ -37,7 +39,6 @@ export function useLocale() {
     const lang = unref(getLang)
     lang && changeLocale(lang)
   }
-  
   return {
     setupLocale,
     getLang,

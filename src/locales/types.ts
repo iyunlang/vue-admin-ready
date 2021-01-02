@@ -1,6 +1,8 @@
-export type LocaleType = 'zh-cn' | 'en'
+export type LocaleType = 'zh' | 'en'
 
 /**
+ * 
+ * element-plus国际化传值
  * 
 简体中文（zh-cn）
 英语（en）

@@ -1,12 +1,16 @@
 import type { ProjectConfig } from '/@/types/config';
 
 import { MenuTypeEnum, MenuModeEnum, TriggerEnum } from '/@/enums/menuEnum';
-import { ThemeEnum } from '/@/enums/appEnum';
+import { ThemeEnum, ContentEnum } from '/@/enums/appEnum';
 import { CacheTypeEnum } from '/@/enums/cacheEnum';
 import { elementPlusSizeEnum, PermissionModeEnum, RouterTransitionEnum } from '/@/enums/appEnum';
 
 // ! You need to clear the browser cache after the change
 const setting: ProjectConfig = {
+  // Whether to enable KeepAlive cache is best to close during development, otherwise the cache needs to be cleared every time
+  openKeepAlive: true,
+  //  Is it possible to embed iframe pages
+  canEmbedIFramePage: true,
   // 显示面包屑
   showBreadCrumb: true,
   // 显示面包屑图标
@@ -31,15 +35,18 @@ const setting: ProjectConfig = {
 
   grayMode: false,
 
+  // content mode
+  contentMode: ContentEnum.FULL,
+
   // locale setting
   locale: {
     show: true,
     // Locale
-    lang: 'zh-cn',
+    lang: 'zh',
     // Default locale
-    fallback: 'zh-cn',
+    fallback: 'zh',
     // available Locales
-    availableLocales: ['zh-cn', 'en'],
+    availableLocales: ['zh', 'en'],
   },
 
     // Transition Setting

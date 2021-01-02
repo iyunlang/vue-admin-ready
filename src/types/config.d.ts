@@ -42,6 +42,13 @@ export interface MultiTabsSetting {
 }
 
 export interface ProjectConfig {
+
+  // pageLayout是否开启keep-alive
+  openKeepAlive: boolean;
+  // 是否可以嵌入iframe页面
+  canEmbedIFramePage: boolean;
+  // content mode
+  contentMode: ContentEnum.FULL,
   // 头部设置
   headerSetting: headerSetting;
   // 显示面包屑

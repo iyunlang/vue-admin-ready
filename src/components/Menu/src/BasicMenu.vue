@@ -2,9 +2,10 @@
     <ElMenu
     :class="getMenuClass"
     >
-        <template>
+        <template v-for="item in items" :key="item.path">
             <BasicSubMenuItem
-            
+            :item="item"
+            :level="1"
             />
         </template>
     </ElMenu>
@@ -31,7 +32,6 @@ export default defineComponent({
     },
     props: basicProps,
     setup(props) {
-
         const { prefixCls } = useDesign('basic-menu');
 
         const { getCollapsed, getIsHorizontal, getTopMenuAlign, getSplit } = useMenuSetting();

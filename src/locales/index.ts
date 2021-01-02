@@ -1,5 +1,4 @@
-// import messages from 'globby?locale!/@/locales/lang/**/*.@(ts)';
-const messages = {}
+import messages from 'globby?locale!/@/locales/lang/**/*.@(ts)';
 
 import type { DropMenu } from '/@/components/Dropdown';
 

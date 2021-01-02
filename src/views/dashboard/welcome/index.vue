@@ -1,6 +1,6 @@
 <template>
   <div class="welcome">
-    <p>welcome</p>
+    首页
   </div>
 </template>
 <script lang="ts">

@@ -36,3 +36,7 @@ export const isDef = <T = unknown>(val?: T): val is T => {
 export const isUnDef = <T = unknown>(val?: T): val is T => {
   return !isDef(val);
 };
+
+export function isNullAndUnDef(val: unknown): val is null | undefined {
+  return isUnDef(val) && isNull(val);
+}

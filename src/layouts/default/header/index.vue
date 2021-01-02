@@ -75,7 +75,6 @@ export default defineComponent({
 
     const getHeaderClass = computed(() => {
       const theme = unref(getHeaderTheme)
-      console.log('theme', theme)
       return [
         prefixCls,
         {
@@ -101,8 +100,6 @@ export default defineComponent({
     const getMenuMode = computed(() => {
       return unref(getSplit) ? MenuModeEnum.HORIZONTAL : null;
     });
-
-    console.log('getHeaderHeight:', unref(getHeaderHeight))
 
     return {
       prefixCls,

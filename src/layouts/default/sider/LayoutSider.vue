@@ -7,6 +7,7 @@
     </div>
     <ElAside
     :class="getSiderClass"
+    :width="`${getMenuWidth}px`"
     >
         <!-- <template #trigger v-if="getShowTrigger">
             <LayoutTrigger />
@@ -76,12 +77,10 @@ export default defineComponent({
             }
         );
 
-        console.log(1,unref(getIsMixMode))
-        console.log(2,!unref(getIsMobile))
-
         const getSiderClass = computed(() => {
             return [
             prefixCls,
+            `${prefixCls}--${getMenuTheme}`,
             {
                 [`${prefixCls}--fixed`]: unref(getMenuFixed),
                 hidden: !unref(showClassSideBarRef),
@@ -98,6 +97,7 @@ export default defineComponent({
             getMode,
             getSplitType,
             getSiderClass,
+            getMenuWidth,
         }
     }
 })
@@ -109,6 +109,15 @@ $layout-sider-prefix-cls: '#{$namespace}-layout-sideBar';
 
 .#{$layout-sider-prefix-cls} {
     z-index: $layout-sider-fixed-z-index;
+    background-color: #fff;
+
+    &--light {
+        background-color: $sider-dark-lighten-1-bg-color;
+    }
+
+    &--dark {
+        background-color: $sider-dark-bg-color;
+    }
 
     &--fixed {
       position: fixed;

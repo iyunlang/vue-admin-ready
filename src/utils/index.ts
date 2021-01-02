@@ -33,3 +33,14 @@ export function setObjToUrlParams(baseUrl: string, obj: any): string {
   }
   return url;
 }
+
+/**
+ * @description: 根据数组中某个对象值去重
+ */
+export function unique<T = any>(arr: T[], key: string): T[] {
+  const map = new Map();
+  return arr.filter((item) => {
+    const _item = item as any;
+    return !map.has(_item[key]) && map.set(_item[key], 1);
+  });
+}
