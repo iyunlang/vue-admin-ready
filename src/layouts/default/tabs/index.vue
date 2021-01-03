@@ -1,17 +1,40 @@
 <template>
   <div :class="getWrapClass">
-    <ElTabs
-      type="editable-card"
-      size="small"
-      :animated="false"
-      :hideAdd="true"
-      :tabBarGutter="3"
-      :activeKey="activeKeyRef"
-      @change="handleChange"
+    <ElTabs 
+    v-model="activeKeyRef.name" 
+    type="card" 
+    tab-position="top" 
+    addable 
+    scrollable 
+    closable 
+    @tab-remove="removeTab"
+    >
+      <ElTabPane
+        v-for="item in getTabsState"
+        :key="item.name"
+        :name="item.name"
+      >
+        <template #label>
+          <TabContent :tabItem="item" />
+        </template>
+      </ElTabPane>
+    </ElTabs>
+
+    <!-- <ElTabs
+      type="border-card"
+      :value="activeKeyRef"
+      :stretch="true"
+      :addable="true"
+      :closable="true"
+      :editable="true"
+      @tab-click="handleChange"
+      @tab-add="handleChange"
       @edit="handleEdit"
     >
       <template v-for="item in getTabsState" :key="item.query ? item.fullPath : item.path">
-        <ElTabPane :closable="!(item && item.meta && item.meta.affix)">
+        <ElTabPane :name="key" :closable="!(item && item.meta && item.meta.affix)">
+              {{item.name}}
+
           <template #tab>
             <TabContent :tabItem="item" />
           </template>
@@ -22,7 +45,7 @@
         <TabRedo v-if="getShowRedo" />
         <QuickButton v-if="getShowQuick" />
       </template>
-    </ElTabs>
+    </ElTabs> -->
   </div>
 </template>
 <script lang="ts">
@@ -55,11 +78,14 @@
     setup() {
       const affixTextList = initAffixTabs();
       const activeKeyRef = ref('');
+      const go = useGo();
 
       useTabsDrag(affixTextList);
+      
       const { prefixCls } = useDesign('multiple-tabs');
-      const go = useGo();
       const { getShowQuick, getShowRedo } = useMultipleTabSetting();
+
+      console.log('复杂导航', tabStore.getTabsState)
 
       const getTabsState = computed(() => tabStore.getTabsState);
 
@@ -76,7 +102,10 @@
 
       listenerLastChangeTab((route) => {
         const { name } = route;
-        if (name === REDIRECT_NAME || !route || !userStore.getTokenState) return;
+        // 登录验证
+        // if (name === REDIRECT_NAME || !route || !userStore.getTokenState) return;
+        // 没有登录验证
+        if (name === REDIRECT_NAME || !route ) return;
 
         const { path, fullPath } = route;
         const p = fullPath || path;
@@ -99,6 +128,14 @@
 
         tabStore.closeTabByKeyAction(targetKey);
       }
+
+      function removeTab(tabName: string) {
+        console.log(unref(unClose), tabName)
+        if (unref(unClose)) return;
+
+        tabStore.closeTabByKeyAction(tabName);
+      }
+
       return {
         prefixCls,
         unClose,
@@ -109,6 +146,7 @@
         getTabsState,
         getShowQuick,
         getShowRedo,
+        removeTab,
       };
     },
   });

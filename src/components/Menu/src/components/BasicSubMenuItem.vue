@@ -1,18 +1,23 @@
 <template>
-    <BasicMenuItem v-if="!menuHasChild(item)" v-bind="$props"></BasicMenuItem>
-    <ElSubmenu v-else :class="[`${prefixCls}__level${level}`, theme]">
+    <BasicMenuItem :level="getParentsLevel" v-if="!menuHasChild(item)" v-bind="$props"></BasicMenuItem>
+    <ElSubmenu v-else :index="getParentsLevel" :class="[`${prefixCls}__level${level}`, theme]">
         <template #title>
           <MenuItemContent v-bind="$props" :item="item"/>
         </template>
 
-        <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
-            <BasicSubMenuItem v-bind="$props" :item="childrenItem" :level="level + 1"></BasicSubMenuItem>
+        <template v-for="(childrenItem, subIndex) in item.children || []" :key="childrenItem.path">
+            <BasicSubMenuItem v-bind="$props" 
+            :item="childrenItem" 
+            :parentsLevel="getParentsLevel" 
+            :level="subIndex"
+            >
+            </BasicSubMenuItem>
         </template>
     </ElSubmenu>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { ElSubmenu } from 'element-plus'
 
 import type { Menu as MenuType } from '/@/router/types';
@@ -32,7 +37,7 @@ export default defineComponent({
         ElSubmenu,
     },
     props: itemProps,
-    setup() {
+    setup(props) {
         const { prefixCls } = useDesign('basic-menu-item');
         function menuHasChild(menuTreeItem: MenuType): boolean {
             return (
@@ -42,9 +47,12 @@ export default defineComponent({
             );
         }
 
+        const getParentsLevel = props.parentsLevel?+'-'+props.level: props.level+''
+
         return {
             menuHasChild,
-            prefixCls
+            prefixCls,
+            getParentsLevel,
         }
     }
 })

@@ -181,7 +181,9 @@ class Tab extends VuexModule {
 
   @Action
   addTabAction(route: RouteLocationNormalized) {
+
     const { path, name } = route;
+
     // 404  页面不需要添加tab
     if (
       path === PageEnum.ERROR_PAGE ||
@@ -190,6 +192,7 @@ class Tab extends VuexModule {
     ) {
       return;
     }
+
     this.commitTabRoutesState(getRoute(route));
 
     this.commitCachedMapState();
@@ -266,7 +269,16 @@ class Tab extends VuexModule {
 
   @Action
   closeTabByKeyAction(key: string) {
-    const index = this.tabsState.findIndex((item) => (item.fullPath || item.path) === key);
+    let index = this.tabsState.findIndex((item) => (item.name) === key);
+    if(index === -1) {
+        for(let i in this.tabsState) {
+            if(this.tabsState[i].matched) {
+              let subTabs:any[] = this.tabsState[i].matched
+              index = subTabs.findIndex((item) => (item.name ) === key);
+              if(index > -1) break;
+            }
+        }
+    }
     index !== -1 && this.closeTabAction(this.tabsState[index]);
   }
 

@@ -1,4 +1,4 @@
-import './index.scss'
+
 import {
   defineComponent,
   ref,
@@ -18,8 +18,8 @@ export default defineComponent({
   },
   setup(props, {  }) {
 
-    return () => (
-      
-    )
+    return () => {
+
+    }
   }
 })

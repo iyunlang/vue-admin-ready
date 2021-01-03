@@ -8,7 +8,7 @@ const { setupLocale, elemPlusConfigLocale } = useLocale();
 
 const { lang, availableLocales, fallback } = projectSetting?.locale;
 
-console.log(5, lang, localeMessages)
+console.log('语言数据', lang, localeMessages)
 
 const localeData: I18nOptions = {
   legacy: false,

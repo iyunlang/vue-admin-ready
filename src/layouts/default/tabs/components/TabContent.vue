@@ -8,13 +8,17 @@
       <RightOutlined />
     </span>
   </Dropdown> -->
-  <div></div>
+  <span :class="[prefixCls]">
+    <span :class="`${prefixCls}__info`">
+      {{getTitle}}
+    </span>
+  </span>
 </template>
 <script lang="ts">
   import type { PropType } from 'vue';
 
   import { defineComponent, computed } from 'vue';
-  // import { Dropdown } from '/@/components/Dropdown/index';
+  import { Dropdown } from '/@/components/Dropdown/index';
 
   import { TabContentProps, TabContentEnum } from '../types';
 
@@ -28,7 +32,7 @@
   export default defineComponent({
     name: 'TabContent',
     components: { 
-      // Dropdown, 
+      Dropdown, 
       // RightOutlined 
       },
     props: {
@@ -74,3 +78,14 @@
     },
   });
 </script>
+
+<style lang="scss" scoped>
+@import '../../../../styles/index.scss';
+$prefix-cls: '#{$namespace}-multiple-tabs-content';
+
+.#{$prefix-cls} {
+
+  font-size: 14px;
+}
+
+</style>

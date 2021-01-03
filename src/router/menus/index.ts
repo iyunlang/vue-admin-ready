@@ -83,7 +83,7 @@ function basicFilter(routes: RouteRecordNormalized[]) {
       if (match && match === menu.path) {
         return true;
       }
-
+      
       if (route.meta?.carryParam) {
         return pathToRegexp(route.path).test(menu.path);
       }

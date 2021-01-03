@@ -96,7 +96,7 @@ export default defineComponent({
 
     return () => {
       return (
-        <ElDrawer class={prefixCls} modelValue={unref(isShowRef)}>
+        <ElDrawer customClass={prefixCls} modelValue={unref(isShowRef)}>
           {{
             default: () => (
               <>

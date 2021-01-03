@@ -28,16 +28,16 @@ export default defineComponent({
     props: contentProps,
     setup( props ) {
         const { prefixCls } = useDesign('basic-menu-item-content');
-        console.log(3, t(props.item?.name))
+
         const getI18nName = computed(() => t(props.item?.name));
+
         const getIcon = computed(() => props.item?.icon);
 
         const getNameClass = computed(() => {
             const { showTitle } = props;
             return { [`${prefixCls}--show-title`]: showTitle, [`${prefixCls}-wrapper__name`]: !showTitle };
         });
-        
-
+    
         return {
             prefixCls,
             getIcon,

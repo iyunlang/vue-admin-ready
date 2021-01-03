@@ -2,32 +2,37 @@
 $prefix-cls: '#{$namespace}-multiple-tabs';
 
 .#{$prefix-cls} {
-  z-index: 10;
-  height: $multiple-height + 2;
-  // line-height: $multiple-height + 2;
   background: $white;
-  box-shadow: 0 1px 2px 0 rgba(29, 35, 41, 0.05);
+  z-index: 10;
 
-  .el-tabs {
-    height: $multiple-height + 2;
+  .el-tabs--card > .el-tabs__header .el-tabs__nav {
+    border: none;
+    border-radius: 4px;
+    margin: 4px;
+    margin-right: 0;
+    background-color: $sider-dark-bg-color;
   }
-
+  
   .el-tabs__header {
     margin-bottom: 0;
   }
 
+  .el-tabs__nav:hover .el-tabs__item {
+    color: #fff;
+  }
+  
   .el-tabs__item {
-    line-height: $multiple-height + 2;
-    height: $multiple-height + 2;
-    padding: 0 ($multiple-height / 2);
-    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
   }
 
-  .el-tabs__nav {
-    font-size: 0;
+  .el-icon-close {
+    color: #fff;
   }
 
-  .el-tabs__nav-wrap::after {
-    display: none;
+  .el-tabs__new-tab {
+    margin: 9px 20px 9px 10px;
   }
+
 }

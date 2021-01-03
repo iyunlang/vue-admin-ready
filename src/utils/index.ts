@@ -44,3 +44,10 @@ export function unique<T = any>(arr: T[], key: string): T[] {
     return !map.has(_item[key]) && map.set(_item[key], 1);
   });
 }
+
+/**
+ * @description: es6数组去重复
+ */
+export function es6Unique<T>(arr: T[]): T[] {
+  return Array.from(new Set(arr));
+}

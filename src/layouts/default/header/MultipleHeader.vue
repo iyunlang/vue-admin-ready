@@ -20,7 +20,7 @@
 
   const HEADER_HEIGHT = 48;
 
-  const TABS_HEIGHT = 32;
+  const TABS_HEIGHT = 38;
   export default defineComponent({
     name: 'LayoutMultipleHeader',
     components: { LayoutHeader, MultipleTabs },
@@ -120,5 +120,6 @@
       z-index: $multiple-tab-fixed-z-index;
       width: 100%;
     }
+
   }
 </style>

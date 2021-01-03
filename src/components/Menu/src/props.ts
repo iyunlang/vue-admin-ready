@@ -37,6 +37,7 @@ export const itemProps = {
     default: {},
   },
   level: propTypes.number,
+  parentsLevel: propTypes.string,
   theme: propTypes.oneOf(['dark', 'light']),
   showTitle: propTypes.bool,
   isHorizontal: propTypes.bool,

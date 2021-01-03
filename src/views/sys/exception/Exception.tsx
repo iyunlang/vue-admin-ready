@@ -1,4 +1,4 @@
-import './exception.less';
+import './exception.scss';
 
 import type { PropType } from 'vue';
 

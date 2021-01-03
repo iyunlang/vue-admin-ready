@@ -8,6 +8,8 @@ import { useSplitMenu } from './useLayoutMenu';
 
 import { propTypes } from '/@/utils/propTypes';
 
+import { useGo } from '/@/hooks/web/usePage';
+
 export default defineComponent({
     name: 'LayoutMenu',
     props: {
@@ -26,13 +28,21 @@ export default defineComponent({
         },
       },
     setup( props ) {
+        const go = useGo();
+
         const { menusRef } = useSplitMenu(toRef(props, 'splitType'));
 
-        console.log(6, menusRef)
+        console.log('侧边导航', menusRef)
+
+        function handleMenuSelect(path: string) {
+          go( path )
+        }
+
         function renderMenu() {
             return (
               <BasicMenu 
                 items={unref(menusRef)}
+                onMenuSelect={handleMenuSelect}
               />
             );
           }

@@ -1,5 +1,5 @@
 <template>
-    <ElMenuItem :class="getLevelClass">
+    <ElMenuItem :index="getLevel" :class="getLevelClass">
         <MenuItemContent v-bind="$props" :item="item" />
     </ElMenuItem>
 </template>
@@ -31,9 +31,12 @@ export default defineComponent({
             return levelCls;
         });
 
+        const getLevel = props.parentsLevel?props.parentsLevel+'-'+props.level:props.level+''
+
         return {
             prefixCls,
             getLevelClass,
+            getLevel,
         }
     }
 })

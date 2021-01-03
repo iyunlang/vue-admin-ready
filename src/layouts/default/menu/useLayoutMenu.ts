@@ -71,6 +71,7 @@ export function useSplitMenu(splitType: Ref<MenuSplitTyeEnum>) {
 
     // spilt mode left
     const children = await getChildrenMenus(parentPath);
+
     if (!children) {
       setMenuSetting({ hidden: true });
       menusRef.value = [];

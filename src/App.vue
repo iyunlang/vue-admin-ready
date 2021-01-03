@@ -33,9 +33,8 @@ export default defineComponent({
         const { transformCellText } = getConfigProvider();
 
         appStore.commitProjectConfigState(defaultSetting);
+        
         const { changeRole } = usePermission();
-
-        console.log(4, elemPlusConfigLocale)
 
         changeRole(RoleEnum.SUPER)
 
