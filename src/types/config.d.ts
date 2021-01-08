@@ -42,7 +42,8 @@ export interface MultiTabsSetting {
 }
 
 export interface ProjectConfig {
-
+  // 锁屏时间
+  lockTime: number;
   // pageLayout是否开启keep-alive
   openKeepAlive: boolean;
   // 是否可以嵌入iframe页面

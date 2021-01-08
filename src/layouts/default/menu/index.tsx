@@ -1,3 +1,5 @@
+import './index.scss';
+
 import { defineComponent, unref, toRef, PropType } from 'vue'
 
 import { BasicMenu } from '/@/components/Menu';

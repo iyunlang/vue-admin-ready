@@ -6,18 +6,20 @@
     >
     </div>
     <ElAside
+    ref="sideRef"
     :class="getSiderClass"
-    :width="`${getMenuWidth}px`"
+    :width="getSideWidth"
     >
         <!-- <template #trigger v-if="getShowTrigger">
             <LayoutTrigger />
         </template> -->
         <LayoutMenu :theme="getMenuTheme" :menuMode="getMode" :splitType="getSplitType" />
+        <DragBar ref="dragBarRef" />
     </ElAside>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, CSSProperties, unref } from 'vue'
+import { defineComponent, computed, CSSProperties, unref, ref } from 'vue'
 
 import { ElAside } from 'element-plus'
 
@@ -26,16 +28,22 @@ import LayoutMenu from '../menu'
 import { MenuModeEnum, MenuSplitTyeEnum } from '/@/enums/menuEnum';
 
 import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
+import { useTrigger, useDragLine, useSiderEvent } from './useLayoutSider';
 import { useAppInject } from '/@/hooks/web/useAppInject';
 import { useDesign } from '/@/hooks/web/useDesign';
+
+import DragBar from './DragBar.vue';
 
 export default defineComponent({
     name: 'LayoutSider',
     components: {
         ElAside,
         LayoutMenu,
+        DragBar,
     },
     setup() {
+        const dragBarRef = ref<ElRef>(null);
+        const sideRef = ref<ElRef>(null);
         const {
             getCollapsed,
             getMenuWidth,
@@ -50,6 +58,10 @@ export default defineComponent({
         const { prefixCls } = useDesign('layout-sideBar');
 
         const { getIsMobile } = useAppInject();
+        
+        const { getTriggerAttr, getShowTrigger } = useTrigger(getIsMobile);
+
+        useDragLine(sideRef, dragBarRef);
 
         const showClassSideBarRef = computed(() => {
             return unref(getSplit) ? !unref(getMenuHidden) : true;
@@ -77,10 +89,25 @@ export default defineComponent({
             }
         );
 
+        const getSideWidth = computed(
+            ():string => {
+                console.log(unref(getSideWidth))
+                return `${unref(getSideWidth)}px`
+        })
+
+        const getSideStyle = computed(
+            (): CSSProperties => {
+                const width = unref(getMenuWidth)
+                return {
+                    width: `${width}px !important`
+                }
+            }
+        )
+
         const getSiderClass = computed(() => {
             return [
             prefixCls,
-            `${prefixCls}--${getMenuTheme}`,
+            `${prefixCls}--${unref(getMenuTheme)}`,
             {
                 [`${prefixCls}--fixed`]: unref(getMenuFixed),
                 hidden: !unref(showClassSideBarRef),
@@ -89,15 +116,22 @@ export default defineComponent({
             ];
         });
         return {
+            sideRef,
+            dragBarRef,
+            getSideStyle,
+            getSideWidth,
             getHiddenDomStyle,
             getMenuFixed,
             getIsMobile,
+            getTriggerAttr,
+            getShowTrigger,
             showClassSideBarRef,
             getMenuTheme,
             getMode,
             getSplitType,
             getSiderClass,
             getMenuWidth,
+            getCollapsed,
         }
     }
 })

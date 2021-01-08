@@ -40,3 +40,9 @@ export const isUnDef = <T = unknown>(val?: T): val is T => {
 export function isNullAndUnDef(val: unknown): val is null | undefined {
   return isUnDef(val) && isNull(val);
 }
+
+export const isServer = typeof window === 'undefined';
+
+export const isWindow = (val: any): val is Window => {
+  return typeof window !== 'undefined' && is(val, 'Window');
+};

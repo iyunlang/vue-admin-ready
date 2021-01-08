@@ -4,9 +4,7 @@
       <AppLogo 
       :theme="getHeaderTheme"
       :class="`${prefixCls}-logo`"
-      :style="{
-        height: `${getHeaderHeight}px`
-      }"
+      :style="getLogoWidth"
       />
       <LayoutTrigger
       v-if="

@@ -75,9 +75,13 @@ const getRealWidth = computed(() => {
   return unref(getCollapsed) ? unref(getMiniWidthNumber) : unref(getMenuWidth);
 });
 
+// const getMiniWidthNumber = computed(() => {
+//   const { collapsedShowTitle } = unref(getMenuSetting);
+//   return collapsedShowTitle ? SIDE_BAR_SHOW_TIT_MINI_WIDTH : SIDE_BAR_MINI_WIDTH;
+// });
+
 const getMiniWidthNumber = computed(() => {
-  const { collapsedShowTitle } = unref(getMenuSetting);
-  return collapsedShowTitle ? SIDE_BAR_SHOW_TIT_MINI_WIDTH : SIDE_BAR_MINI_WIDTH;
+  return SIDE_BAR_MINI_WIDTH;
 });
 
 const getCalcContentWidth = computed(() => {

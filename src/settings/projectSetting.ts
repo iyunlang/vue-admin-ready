@@ -31,6 +31,9 @@ const setting: ProjectConfig = {
   // 设置element-plus弹框初始z-index
   zIndex: 3000,
 
+  // Automatic screen lock time, 0 does not lock the screen. Unit minute default 0
+  lockTime: 0,
+
   colorWeak: false,
 
   grayMode: false,
