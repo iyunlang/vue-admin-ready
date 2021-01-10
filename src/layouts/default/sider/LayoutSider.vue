@@ -91,18 +91,8 @@ export default defineComponent({
 
         const getSideWidth = computed(
             ():string => {
-                console.log(unref(getSideWidth))
-                return `${unref(getSideWidth)}px`
+                return `${unref(getRealWidth)}px`
         })
-
-        const getSideStyle = computed(
-            (): CSSProperties => {
-                const width = unref(getMenuWidth)
-                return {
-                    width: `${width}px !important`
-                }
-            }
-        )
 
         const getSiderClass = computed(() => {
             return [
@@ -118,7 +108,6 @@ export default defineComponent({
         return {
             sideRef,
             dragBarRef,
-            getSideStyle,
             getSideWidth,
             getHiddenDomStyle,
             getMenuFixed,
@@ -164,6 +153,7 @@ $layout-sider-prefix-cls: '#{$namespace}-layout-sideBar';
       top: 48px;
       height: calc(100% - $header-height);
     }
+
 }
 
 

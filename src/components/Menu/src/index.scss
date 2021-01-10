@@ -30,6 +30,18 @@ $basic-menu-tag-prefix-cls: '#{$namespace}-basic-menu-item-tag';
         height: auto;
     }
 
+    &.dark .el-submenu__title:hover,
+    &.dark .el-menu-item:hover,
+    &.dark .el-menu-item.is-active {
+        // background: rgba(255, 255, 255, 0.06) !important;
+        background: rgba(0,0,0,0.2) !important;
+    }
+
+    &.light .el-menu-item.is-active {
+        // background: rgba(255, 255, 255, 0.06) !important;
+        background: rgba(0,0,0,0.03) !important;
+    }
+
     // &.el-menu--collapse {
     //     width: 48px;
     // }

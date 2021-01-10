@@ -8,11 +8,15 @@
     @select="handleMenuSelect"
     @open="handleMenuOpen"
     @close="handleMenuClose"
+    :background-color="getMenuBgColor"
+    :text-color="getTextColor"
+    :active-text-color="getActiveTextColor"
     >
         <template v-for="(item, index) in items" :key="item.path">
             <BasicSubMenuItem
             :item="item"
             :level="index"
+            :theme="theme"
             />
         </template>
     </ElMenu>
@@ -37,6 +41,7 @@ import { useOpenKeys } from './useOpenKeys.ts';
 
 import { basicProps } from './props';
 
+import { ThemeEnum } from '/@/enums/appEnum';
 import { MenuModeEnum, MenuTypeEnum } from '/@/enums/menuEnum';
 
 import { listenerLastChangeTab } from '/@/logics/mitt/tabChange';
@@ -62,13 +67,23 @@ export default defineComponent({
 
         const { prefixCls } = useDesign('basic-menu');
         const { items, mode, accordion } = toRefs(props);
-        const { getCollapsed, getIsHorizontal, getTopMenuAlign, getSplit } = useMenuSetting();
+        const { getCollapsed, getIsHorizontal, getTopMenuAlign, getSplit, getMenuBgColor } = useMenuSetting();
         const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(
             menuState,
             items,
             mode,
             accordion
         );
+
+        const getActiveTextColor = computed(() => {
+            if(props.theme === ThemeEnum.LIGHT) return '#1b82bd'
+            return '#1b82bd'
+        })
+
+        const getTextColor = computed(() => {
+            if(props.theme === ThemeEnum.LIGHT) return '#444444'
+            return '#ffffff'
+        })
 
         const getIsTopMenu = computed(() => {
             const { type, mode } = props;
@@ -83,6 +98,7 @@ export default defineComponent({
             const align = props.isHorizontal && unref(getSplit) ? 'start' : unref(getTopMenuAlign);
             return [
             prefixCls,
+            `${props.theme}`,
             `justify-${align}`,
             {
                 [`${prefixCls}__second`]: !props.isHorizontal && unref(getSplit),
@@ -151,10 +167,13 @@ export default defineComponent({
         }
 
         return {
+            getMenuBgColor,
             getCollapsed,
             getIsHorizontal,
             getMenuClass,
             getOpenKeys,
+            getTextColor,
+            getActiveTextColor,
             handleMenuSelect,
             handleMenuOpen,
             handleMenuClose,

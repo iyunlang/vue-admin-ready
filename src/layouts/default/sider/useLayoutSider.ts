@@ -77,7 +77,6 @@ export function useDragLine(siderRef: Ref<any>, dragBarRef: Ref<any>, mix = fals
   
   onMounted(() => {
     nextTick(() => {
-      console.log(2)
       const [exec] = useDebounce(changeWrapWidth, 80);
       exec();
     });
@@ -114,7 +113,6 @@ export function useDragLine(siderRef: Ref<any>, dragBarRef: Ref<any>, mix = fals
       document.onmouseup = null;
       wrap.style.transition = 'width 0.2s';
       const width = parseInt(wrap.style.width);
-      console.log(1, mix, width, getMiniWidthNumber)
       if (!mix) {
         const miniWidth = unref(getMiniWidthNumber);
         if (!unref(getCollapsed)) {
@@ -134,18 +132,15 @@ export function useDragLine(siderRef: Ref<any>, dragBarRef: Ref<any>, mix = fals
 
   function changeWrapWidth() {
     const ele = getEl(dragBarRef);
-    console.log(11, ele)
     if (!ele) return;
     const wrap = getEl(siderRef);
     if (!wrap) return;
 
-    console.log(3)
     ele.onmousedown = (e: any) => {
       wrap.style.transition = 'unset';
       const clientX = e?.clientX;
       ele.left = ele.offsetLeft;
       handleMouseMove(ele, wrap, clientX);
-      console.log(4, ele)
       removeMouseup(ele);
       ele.setCapture?.();
       return false;

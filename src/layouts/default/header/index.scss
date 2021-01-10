@@ -20,6 +20,10 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
     border-bottom: 1px solid $header-light-bottom-border-color;
   }
 
+  &--dark {
+    background-color: $header-dark-bg-color;
+  }
+
   &--fixed {
     position: fixed;
     top: 0;

@@ -14,18 +14,19 @@ export type RegisterFn = (drawerInstance: DrawerInstance, uuid?: string) => void
 
 export interface ReturnInnerMethods extends DrawerInstance {
   closeDrawer: () => void;
-  changeLoading: (loading: boolean) => void;
-  changeOkLoading: (loading: boolean) => void;
 }
 
 export type UseDrawerReturnType = [RegisterFn, ReturnMethods];
 
 export type UseDrawerInnerReturnType = [RegisterFn, ReturnInnerMethods];
 
-export interface DrawerFooterProps {
-  
-}
-export interface DrawerProps extends DrawerFooterProps {
+export interface DrawerProps {
+  /**
+   * 是否插入至 body 元素上
+   * @default false
+   * @type boolean
+   */
+  appendToBody: boolean;
 
   /**
    * 是否需要遮罩层
@@ -46,14 +47,20 @@ export interface DrawerProps extends DrawerFooterProps {
    * @default '30%'
    * @type （number）xpx , （string）x%
    */
-  size?: string | number;
+  size?: string ;
 
   /**
    * 标题
    * @default 
    * @type string | slot
    */
-  title?: VNodeChild | JSX.Element;
+  title?: string;
+
+  /**
+   * The class name of the container of the Drawer dialog.
+   * @type string
+   */
+  customClass?: string;
 
   /**
    * 是否带标题
@@ -67,17 +74,21 @@ export interface DrawerProps extends DrawerFooterProps {
    * @default true
    * @type boolean
    */
-  modelValue?: boolean;
-  closeFunc?: () => Promise<any>;
-  loading?: boolean;
+  modelValue: boolean;
 
   /**
- * 是否使用虚拟 loading 的是或否的按钮
- * @default false
- * @type boolean
- */
-  confirmLoading: boolean;
-  
+   * 是否显示关闭按钮
+   * @default true
+   * @type boolean
+   */
+  showClose: boolean;
+
+  /**
+   * 关闭前的回调，会暂停 Drawer 的关闭
+   * @default null
+   * @type Function<Function>
+   */
+  beforeClose?: () => Promise<boolean>;
 }
 export interface DrawerActionType {
   scrollBottom: () => void;

@@ -8,6 +8,7 @@
     scrollable 
     closable 
     @tab-remove="removeTab"
+    :class="[`${getMenuTheme}`]"
     >
       <ElTabPane
         v-for="item in getTabsState"
@@ -65,6 +66,7 @@
   import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
   import { listenerLastChangeTab } from '/@/logics/mitt/tabChange';
   import { useMultipleTabSetting } from '/@/hooks/setting/useMultipleTabSetting';
+  import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 
   export default defineComponent({
     name: 'MultipleTabs',
@@ -82,6 +84,7 @@
 
       useTabsDrag(affixTextList);
       
+      const { getMenuTheme } = useMenuSetting()
       const { prefixCls } = useDesign('multiple-tabs');
       const { getShowQuick, getShowRedo } = useMultipleTabSetting();
 
@@ -137,6 +140,7 @@
       }
 
       return {
+        getMenuTheme,
         prefixCls,
         unClose,
         getWrapClass,

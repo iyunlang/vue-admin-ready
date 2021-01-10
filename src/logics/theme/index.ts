@@ -76,11 +76,11 @@ export function updateSidebarBgColor(color: string) {
 
   // only #ffffff is light
   // Only when the background color is #fff, the theme of the menu will be changed to light
-  const isLight = ['#fff', '#ffffff'].includes(color.toLowerCase());
+  const isLight = ['#fff', '#ffffff', 'white'].includes(color.toLowerCase());
 
-  // appStore.commitProjectConfigState({
-  //   menuSetting: {
-  //     theme: isLight ? ThemeEnum.LIGHT : ThemeEnum.DARK,
-  //   },
-  // });
+  appStore.commitProjectConfigState({
+    menuSetting: {
+      theme: isLight ? ThemeEnum.LIGHT : ThemeEnum.DARK,
+    },
+  });
 }

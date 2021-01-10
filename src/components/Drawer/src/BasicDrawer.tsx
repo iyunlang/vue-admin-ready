@@ -9,7 +9,7 @@ import { ElDrawer } from 'element-plus'
 
 import { basicProps } from './props';
 
-import { isFunction, isNumber } from '/@/utils/is';
+import { isFunction, isNumber, isBoolean } from '/@/utils/is';
 import { deepMerge } from '/@/utils';
 
 import { getSlot } from '/@/utils/helper/tsxHelper';
@@ -31,6 +31,28 @@ export default defineComponent({
       }
     );
 
+    const getProps = computed(
+      (): DrawerProps => {
+        const opt = {
+          direction: 'rtl',
+          ...attrs,
+          ...unref(getMergeProps),
+          modelValue: unref(isShowRef),
+        };
+        opt.title = undefined;
+        const { size, customClass, appendToBody } = opt;
+        if (appendToBody) {
+          if (!size) {
+            opt.size = '100%';
+          }
+          const detailCls = `${prefixCls}__detail`;
+
+          opt.customClass = customClass ? `${customClass} ${detailCls}` : detailCls;
+        }
+        return opt as DrawerProps;
+      }
+    );
+
     const getBindValues = computed(
       (): DrawerProps => {
         return {
@@ -40,18 +62,8 @@ export default defineComponent({
       }
     );
 
-    const getProps = computed(
-      (): DrawerProps => {
-        const opt = {
-          ...attrs,
-          modelValue: unref(isShowRef),
-        };
-        return opt as DrawerProps;
-      }
-    );
-
     watchEffect(() => {
-      isShowRef.value = props.visible;
+      isShowRef.value = props.modelValue;
     });
 
     watch(
@@ -66,22 +78,24 @@ export default defineComponent({
       }
     );
 
-    async function onSwitch(e: ChangeEvent) {
-      const { closeFunc } = unref(getProps);
-      emit('close', e);
-      if (closeFunc && isFunction(closeFunc)) {
-        const res = await closeFunc();
-        isShowRef.value = !res;
+    async function beforeClose(done: Function) {
+      const { beforeClose: ParentBeforeClose } = unref(getProps);
+      if (ParentBeforeClose && isFunction(ParentBeforeClose)) {
+        const res = await ParentBeforeClose();
+        if( isBoolean(res) ) isShowRef.value = !res;
+        isShowRef.value = !unref(isShowRef)
+        done()
         return;
       }
       isShowRef.value = false;
+      done()
     }
 
     function setDrawerProps(props: Partial<DrawerProps>): void {
       // Keep the last setDrawerProps
       propsRef.value = deepMerge(unref(propsRef) || {}, props);
 
-      if (Reflect.has(props, 'visible')) {
+      if (Reflect.has(props, 'modelValue')) {
         isShowRef.value = !!props.modelValue;
       }
     }
@@ -96,7 +110,7 @@ export default defineComponent({
 
     return () => {
       return (
-        <ElDrawer customClass={prefixCls} modelValue={unref(isShowRef)}>
+        <ElDrawer {...unref(getBindValues)} beforeClose={beforeClose}>
           {{
             default: () => (
               <>

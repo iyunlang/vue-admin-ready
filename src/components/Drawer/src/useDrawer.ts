@@ -58,7 +58,7 @@ export function useDrawer(): UseDrawerReturnType {
 
     openDrawer: <T = any>(visible = true, data?: T, openOnSet = true): void => {
       getInstance().setDrawerProps({
-        modal: visible,
+        modelValue: visible,
       });
       if (!data) return;
 
@@ -117,16 +117,9 @@ export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
   return [
     register,
     {
-      changeLoading: (loading = true) => {
-        getInstance().setDrawerProps({ loading });
-      },
-
-      changeOkLoading: (loading = true) => {
-        getInstance().setDrawerProps({ confirmLoading: loading });
-      },
 
       closeDrawer: () => {
-        getInstance().setDrawerProps({ modal: false });
+        getInstance().setDrawerProps({ modelValue: false });
       },
 
       setDrawerProps: (props: Partial<DrawerProps>) => {
