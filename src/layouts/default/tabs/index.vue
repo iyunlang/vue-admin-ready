@@ -72,7 +72,6 @@
     name: 'MultipleTabs',
     components: {
       QuickButton: createAsyncComponent(() => import('./components/QuickButton.vue')),
-      TabRedo: createAsyncComponent(() => import('./components/TabRedo.vue')),
       ElTabs,
       ElTabPane,
       TabContent,
