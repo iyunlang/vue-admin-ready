@@ -1,6 +1,6 @@
 <template>
     <SiderTrigger v-if="sider"/>
-    <HeaderTrigger v-else/>
+    <HeaderTrigger v-else :theme="theme"/>
 </template>
 
 <script lang="ts">

@@ -1,5 +1,7 @@
 import fs from 'fs'
 import path from 'path'
+import chalk from 'chalk';
+import dotenv from 'dotenv';
 
 export const isFunction = (arg: unknown): arg is (...args: any[]) => any =>
   typeof arg === 'function';
@@ -39,6 +41,53 @@ export function readAllFile(root: string, reg: RegExp) {
 
 export function isProdFn(mode: 'development' | 'production'): boolean {
   return mode === 'production';
+}
+
+/**
+ * Get the environment variables starting with the specified prefix
+ * @param match prefix
+ * @param confFiles ext
+ */
+export function getEnvConfig(match = 'VITE_GLOB_', confFiles = ['.env', '.env.production']) {
+  let envConfig = {};
+  confFiles.forEach((item) => {
+    try {
+      const env = dotenv.parse(fs.readFileSync(path.resolve(process.cwd(), item)));
+
+      envConfig = { ...envConfig, ...env };
+    } catch (error) {}
+  });
+  Object.keys(envConfig).forEach((key) => {
+    const reg = new RegExp(`^(${match})`);
+    if (!reg.test(key)) {
+      Reflect.deleteProperty(envConfig, key);
+    }
+  });
+  return envConfig;
+}
+
+function consoleFn(color: string, message: any) {
+  console.log(
+    chalk.blue.bold('****************  ') +
+      (chalk as any)[color].bold(message) +
+      chalk.blue.bold('  ****************')
+  );
+}
+
+/**
+ * warnConsole
+ * @param message
+ */
+export function successConsole(message: any) {
+  consoleFn('green', '✨ ' + message);
+}
+
+/**
+ * warnConsole
+ * @param message
+ */
+export function errorConsole(message: any) {
+  consoleFn('red', '✨ ' + message);
 }
 
 /**

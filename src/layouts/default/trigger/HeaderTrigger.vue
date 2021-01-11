@@ -22,3 +22,16 @@
     },
   });
 </script>
+
+<style lang="scss" scoped>
+.light {
+  [class^=el-icon-] {
+    color: #000;
+  }
+}
+.dark {
+  [class^=el-icon-] {
+    color: #fff;
+  }
+}
+</style>

@@ -66,12 +66,12 @@ $prefix-cls: '#{$namespace}-app-logo';
   display: flex;
   align-items: center;
   max-height: 60px;
-  padding-left: 7px;
   cursor: pointer;
 
   &__img {
     width: 32px;
     height: 32px;
+    margin-left: 12px;
   }
 
   &.light {

@@ -18,9 +18,13 @@
 
     </div>
     <div :class="`${prefixCls}-action`">
-      <UserDropDown
-      :theme="getHeaderTheme"
-      />
+
+      <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`"/>
+
+      <UserDropDown :theme="getHeaderTheme"/>
+
+      <AppLocalePicker :theme="getHeaderTheme" :class="`${prefixCls}-action__item`"/>
+
     </div>
   </Header>
 </template>
@@ -32,8 +36,8 @@ import { ElHeader } from 'element-plus'
 import { propTypes } from '/@/utils/propTypes';
 
 import LayoutTrigger from '../trigger/index.vue';
-import { AppLogo } from '/@/components/Application'
-import { UserDropDown } from './components'
+import { AppLogo, AppLocalePicker } from '/@/components/Application'
+import { UserDropDown, FullScreen } from './components'
 
 import { useDesign } from '/@/hooks/web/useDesign.ts';
 import { useAppInject } from '/@/hooks/web/useAppInject.ts';
@@ -49,6 +53,8 @@ export default defineComponent({
     AppLogo,
     UserDropDown,
     LayoutTrigger,
+    AppLocalePicker,
+    FullScreen,
   },
   props: {
     fixed: propTypes.bool,
@@ -67,6 +73,7 @@ export default defineComponent({
       getHeaderHeight,
       getHeaderTheme,
       getShowContent,
+      getShowFullScreen,
     } = useHeaderSetting();
 
     const { getIsMobile } = useAppInject();
@@ -113,6 +120,7 @@ export default defineComponent({
       getShowTopMenu,
       getMenuMode,
       getHeaderHeight,
+      getShowFullScreen,
     }
   }
 })

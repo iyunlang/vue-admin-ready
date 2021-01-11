@@ -1,5 +1,5 @@
 import { ref, unref } from 'vue'
-import { LocaleType } from '../../locales/types'
+import { LocaleType } from '/@/locales/types'
 import { getI18n } from '/@/setup/i18n';
 import { useLocaleSetting } from '/@/hooks/setting/useLocaleSetting';
 
@@ -18,7 +18,7 @@ export function useLocale() {
     (getI18n().global.locale as any).value = lang
     setLocalSetting({ lang })
     switch(lang) {
-      case 'zh-cn':
+      case 'zh':
         import('element-plus/lib/locale/lang/zh-cn').then((locale) => {
           elemPlusConfigLocaleRef.value = locale.default
         })
