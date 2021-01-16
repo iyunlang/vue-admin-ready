@@ -2,9 +2,8 @@ import type { ProjectConfig, GlobConfig, GlobEnvConfig } from '/@/types/config';
 
 import getProjectSetting from '/@/settings/projectSetting';
 import { getGlobEnvConfig, isDevMode } from '/@/utils/env';
-// import { getShortName } from '../../../build/getShortName';
-// const ENV_NAME = getShortName(import.meta.env);
-const ENV_NAME = '';
+import { getShortName } from '../../../build/getShortName';
+const ENV_NAME = getShortName(import.meta.env);
 
 const ENV = ((isDevMode()
   ? getGlobEnvConfig()

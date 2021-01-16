@@ -3,6 +3,7 @@
  */
 import { GLOB_CONFIG_FILE_NAME } from '../constant';
 import fs, { writeFileSync } from 'fs-extra';
+// import { writeFileSync } from 'fs'
 
 import viteConfig from '../../vite.config';
 import { errorConsole, successConsole, getCwdPath, getEnvConfig } from '../utils';
@@ -29,6 +30,8 @@ function createConfig(
       });
     `;
     fs.mkdirp(getCwdPath(outDir));
+    console.log('-------------2',getCwdPath(`${outDir}/${configFileName}`));
+    // console.log("====1", configStr)
     writeFileSync(getCwdPath(`${outDir}/${configFileName}`), configStr);
 
     successConsole('The configuration file is build successfully！');

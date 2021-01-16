@@ -6,11 +6,12 @@ import { argv } from 'yargs';
 import { runBuildConfig } from './buildConf';
 // import { runUpdateHtml } from './updateHtml';
 import { errorConsole, successConsole } from '../utils';
-import { startGzipStyle } from '../vite/plugin/gzip/compress';
+// import { startGzipStyle } from '../vite/plugin/gzip/compress';
 
 export const runBuild = async (preview = false) => {
   try {
     const argvList = argv._;
+    console.log('-----------postBuild.ts:preview:',preview);
     if (preview) {
       let cmd = `cross-env NODE_ENV=production vite build`;
       await sh(cmd, {
@@ -25,7 +26,7 @@ export const runBuild = async (preview = false) => {
     }
     // await runUpdateHtml();
     if (!preview) {
-      await startGzipStyle();
+      // await startGzipStyle();
     }
     successConsole('Vite Build successfully!');
   } catch (error) {

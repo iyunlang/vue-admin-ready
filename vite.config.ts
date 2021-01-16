@@ -10,6 +10,8 @@ import { modifyVars } from './build/config/sassModifyVars'
 import globbyTransform from './build/vite/plugin/transform/globby';
 import dynamicImportTransform from './build/vite/plugin/transform/dynamic-import';
 
+import { createRollupPlugin, createVitePlugins } from './build/vite/plugin';
+
 const pathResolve = (pathStr: string) => {
   return resolve(__dirname, pathStr);
 };
@@ -84,6 +86,9 @@ export default (mode: 'development' | 'production'): UserConfig => {
     //   }
     // },
     proxy: createProxy(VITE_PROXY),
+
+    plugins: createVitePlugins(viteEnv),
+
     define: {
       __VERSION__: pkg.version,
       // setting vue-i18-next

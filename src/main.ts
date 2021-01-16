@@ -6,8 +6,8 @@ import { setupI18n } from '/@/setup/i18n'
 import { setupElementPlus } from '/@/setup/elementPuls'
 
 // import '//at.alicdn.com/t/font_2101671_40p2ivrq6wr.css'
-import './styles/index.scss'
-
+import './styles/index.scss';
+import 'element-plus/lib/theme-chalk/index.css';
 
 const app = createApp(App)
 

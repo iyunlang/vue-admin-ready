@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import chalk from 'chalk';
 import dotenv from 'dotenv';
+import { networkInterfaces } from 'os';
 
 export const isFunction = (arg: unknown): arg is (...args: any[]) => any =>
   typeof arg === 'function';
@@ -39,8 +40,12 @@ export function readAllFile(root: string, reg: RegExp) {
   return resultArr;
 }
 
-export function isProdFn(mode: 'development' | 'production'): boolean {
-  return mode === 'production';
+export function isProdFn(): boolean {
+  return process.env.NODE_ENV === 'production';
+}
+
+export function isDevFn(): boolean {
+  return process.env.NODE_ENV === 'development';
 }
 
 /**
@@ -73,6 +78,26 @@ function consoleFn(color: string, message: any) {
       chalk.blue.bold('  ****************')
   );
 }
+
+/**
+ * get client ip address
+ */
+export function getIPAddress() {
+  let interfaces = networkInterfaces();
+  for (let devName in interfaces) {
+    let iFace = interfaces[devName];
+    if (!iFace) return;
+    for (let i = 0; i < iFace.length; i++) {
+      let alias = iFace[i];
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+        return alias.address;
+      }
+    }
+  }
+
+  return '';
+}
+
 
 /**
  * warnConsole
