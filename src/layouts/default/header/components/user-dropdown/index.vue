@@ -1,7 +1,7 @@
 <template>
     <ElDropdown :class="`${prefixCls}-overlay`">
       <div :class="[prefixCls, `${prefixCls}--${theme}`]">
-        <ElAvatar :class="[`${prefixCls}__avatar`]" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></ElAvatar>
+        <ElAvatar :class="[`${prefixCls}__avatar`]" :size="getAvatarSize" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></ElAvatar>
         <span :class="[`${prefixCls}__name`]">super admin</span>
       </div>
       <template #dropdown>
@@ -13,11 +13,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent, unref } from 'vue';
 
 import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElAvatar } from 'element-plus';
 
 import { useDesign } from '/@/hooks/web/useDesign';
+import { useAppInject } from '/@/hooks/web/useAppInject';
 
 import { propTypes } from '/@/utils/propTypes';
 
@@ -34,8 +35,14 @@ export default defineComponent({
     },
     setup() {
         const { prefixCls } = useDesign('header-user-dropdown');
+
+        const { getIsMobile } = useAppInject();
+
+        const getAvatarSize = computed(() => !unref(getIsMobile) ? 'medium': 'small')
+
         return {
-            prefixCls
+            prefixCls,
+            getAvatarSize,
         }
     }
 })
@@ -53,7 +60,7 @@ $prefix-cls-overlay: '#{$namespace}-header-user-dropdown-overlay';
     padding: 0 10px;
 
     &__avatar {
-        margin-right: 12px;
+        margin-right: 6px;
     }
 
     &--light {

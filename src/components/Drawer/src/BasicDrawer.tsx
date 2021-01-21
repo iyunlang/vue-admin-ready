@@ -100,6 +100,10 @@ export default defineComponent({
       }
     }
 
+    function renderHeader() {
+      
+    }
+
     const drawerInstance: DrawerInstance = {
       setDrawerProps: setDrawerProps,
     };
@@ -112,6 +116,7 @@ export default defineComponent({
       return (
         <ElDrawer {...unref(getBindValues)} beforeClose={beforeClose}>
           {{
+            title: renderHeader(),
             default: () => (
               <>
                 {getSlot(slots)}

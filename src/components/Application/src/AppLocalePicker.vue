@@ -40,6 +40,7 @@ export default defineComponent({
       // Whether to refresh the interface when changing
       reload: propTypes.bool,
       theme: propTypes.oneOf(['light', 'dark']),
+      isMin: propTypes.bool.def(false),
     },
     setup(props) {
         const selectedKeys = ref<string[]>([]);
@@ -54,7 +55,9 @@ export default defineComponent({
         const getLangText = computed(() => {
             const key = selectedKeys.value[0];
             if (!key) return '';
+            if (!props.isMin) 
             return localeList.find((item) => item.event === key)?.text;
+            return localeList.find((item) => item.event === key)?.text_min;
         });
 
         console.log(unref(localeList))

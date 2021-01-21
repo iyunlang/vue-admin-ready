@@ -14,4 +14,5 @@ export const basicProps = {
     default: null,
   },
   destroyOnClose: propTypes.bool,
+  size: propTypes.string.def('30%')
 };

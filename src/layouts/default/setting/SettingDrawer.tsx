@@ -1,5 +1,6 @@
 import { defineComponent, computed, unref } from 'vue';
 import { BasicDrawer } from '/@/components/Drawer/index';
+import { ElDivider } from 'element-plus';
 import {
   SettingFooter,
   ThemePicker,
@@ -49,19 +50,27 @@ export default defineComponent({
       );
     }
 
+    const dividerContentPosition = 'left'
+
     return () => (
       <BasicDrawer
-        {...attrs}
+        {...attrs} 
+        size={330}
         // title={t('layout.setting.drawerTitle')}
-        // size={330}
         // customClass="setting-drawer"
       >
         {{
           default: () => (
-            <>
-              { renderHeaderTheme() }
-              { renderSiderTheme() }
-              <SettingFooter />
+            <> 
+              <div 
+              style={ {padding: '12px 20px 12px 6px'} }
+              >
+                  <ElDivider content-position={dividerContentPosition}>头部主题颜色</ElDivider>
+                  { renderHeaderTheme() }
+                  <ElDivider content-position={dividerContentPosition}>菜单栏主题颜色</ElDivider>
+                  { renderSiderTheme() }
+                  <SettingFooter />
+              </div>
             </>
           ),
         }}

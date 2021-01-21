@@ -10,13 +10,13 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
   height: $header-height;
   padding: 0;
   margin-left: -1px;
-  color: $white;
   background: $white;
   align-items: center;
   justify-content: space-between;
-
+  
   &--light {
     background-color: $white;
+    color: rgba(0, 0, 0, 0.65);
     border-bottom: 1px solid $header-light-bottom-border-color;
 
     .#{$header-prefix-cls}-action {
@@ -40,6 +40,7 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
 
   &--dark {
     background-color: $header-dark-bg-color;
+    color: $white;
     .#{$header-prefix-cls}-logo {
       &:hover {
         background: $header-dark-bg-hover-color;
@@ -107,6 +108,7 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
     &__item {
       display: flex;
       height: $header-height;
+      line-height: $header-height;
       padding: 0 2px;
       font-size: 1.2em;
       cursor: pointer;
@@ -115,6 +117,26 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
 
     span[role='img'] {
       padding: 0 8px;
+    }
+  }
+
+  &--mobile {
+    .#{$header-prefix-cls}-action {
+      // padding-right: 0;
+    }
+
+    .#{$header-trigger-prefix-cls} {
+      padding: 1px 8px 0 8px;
+    }
+
+    .#{$logo-prefix-cls} {
+
+      &__title {
+        display: none;
+      }
+      &__img {
+        margin-left: 0;
+      }
     }
   }
 

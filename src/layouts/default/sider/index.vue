@@ -1,6 +1,7 @@
 <template>
     <ElDrawer
     v-if="getIsMobile"
+    direction="ltr"
     :withHeader="false"
     :modelValue="!getCollapsed"
     >

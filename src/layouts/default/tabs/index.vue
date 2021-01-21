@@ -4,7 +4,7 @@
     v-model="activeKeyRef.name" 
     type="card" 
     tab-position="top" 
-    addable 
+     
     scrollable 
     closable 
     @tab-remove="removeTab"
@@ -20,33 +20,6 @@
         </template>
       </ElTabPane>
     </ElTabs>
-
-    <!-- <ElTabs
-      type="border-card"
-      :value="activeKeyRef"
-      :stretch="true"
-      :addable="true"
-      :closable="true"
-      :editable="true"
-      @tab-click="handleChange"
-      @tab-add="handleChange"
-      @edit="handleEdit"
-    >
-      <template v-for="item in getTabsState" :key="item.query ? item.fullPath : item.path">
-        <ElTabPane :name="key" :closable="!(item && item.meta && item.meta.affix)">
-              {{item.name}}
-
-          <template #tab>
-            <TabContent :tabItem="item" />
-          </template>
-        </ElTabPane>
-      </template>
-
-      <template #tabBarExtraContent v-if="getShowRedo || getShowQuick">
-        <TabRedo v-if="getShowRedo" />
-        <QuickButton v-if="getShowQuick" />
-      </template>
-    </ElTabs> -->
   </div>
 </template>
 <script lang="ts">

@@ -2,6 +2,7 @@
   <Header :class="getHeaderClass" :height="`${getHeaderHeight}px`">
     <div :class="`${prefixCls}-left`">
       <AppLogo 
+      :showTitle="!getIsMobile"
       :theme="getHeaderTheme"
       :class="`${prefixCls}-logo`"
       :style="getLogoWidth"
@@ -23,7 +24,7 @@
 
       <UserDropDown :theme="getHeaderTheme"/>
 
-      <AppLocalePicker :theme="getHeaderTheme" :class="`${prefixCls}-action__item`"/>
+      <AppLocalePicker :isMin="getIsMobile" :theme="getHeaderTheme" :class="`${prefixCls}-action__item`"/>
 
     </div>
   </Header>
@@ -93,6 +94,9 @@ export default defineComponent({
     const getLogoWidth = computed(() => {
       if (!unref(getIsMixMode)) {
         return {};
+      }
+      if(unref(getIsMobile)) {
+        return {}
       }
       const width = unref(getMenuWidth) < 180 ? 180 : unref(getMenuWidth);
       return { width: `${width}px` };
