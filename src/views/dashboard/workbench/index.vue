@@ -1,5 +1,5 @@
 <template>
-  <div class="workbench">
+  <div class="">
     工作树
   </div>
 </template>

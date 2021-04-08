@@ -1,19 +1,20 @@
 <template>
   <div :class="getWrapClass">
     <ElTabs 
-    v-model="activeKeyRef.name" 
+    v-model="activeKeyRef" 
     type="card" 
     tab-position="top" 
      
     scrollable 
     closable 
-    @tab-remove="removeTab"
+    @tab-click="handleChange"
+    @tab-remove="handleRemove"
     :class="[`${getMenuTheme}`]"
     >
       <ElTabPane
         v-for="item in getTabsState"
-        :key="item.name"
-        :name="item.name"
+        :key="item.path"
+        :name="item.path"
       >
         <template #label>
           <TabContent :tabItem="item" />
@@ -91,23 +92,14 @@
         tabStore.addTabAction(unref(route));
       });
 
-      function handleChange(activeKey: any) {
-        activeKeyRef.value = activeKey;
-        go(activeKey, false);
+      function handleChange(targetName: any) {
+        go(targetName.props.name, false);
+        // tabStore.closeTabByKeyAction(targetName.props.name)
       }
 
-      // Close the current tab
-      function handleEdit(targetKey: string) {
-        // Added operation to hide, currently only use delete operation
+      function handleRemove(tabName: any) {
+        console.log(tabName, unref(unClose))
         if (unref(unClose)) return;
-
-        tabStore.closeTabByKeyAction(targetKey);
-      }
-
-      function removeTab(tabName: string) {
-        console.log(unref(unClose), tabName)
-        if (unref(unClose)) return;
-
         tabStore.closeTabByKeyAction(tabName);
       }
 
@@ -116,13 +108,12 @@
         prefixCls,
         unClose,
         getWrapClass,
-        handleEdit,
         handleChange,
-        activeKeyRef,
+        activeKeyRef: unref(activeKeyRef),
         getTabsState,
         getShowQuick,
         getShowRedo,
-        removeTab,
+        handleRemove,
       };
     },
   });

@@ -16,9 +16,12 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
     color: #fff;
   }
   .el-tabs__item {
-    color: #fff;
+    color: rgb(58, 169, 212);
   }
-  .el-tabs__nav:hover .el-tabs__item {
+  .el-tabs__nav .el-tabs__item:hover {
+    color: rgb(154, 209, 235);
+  }
+  .el-tabs__item.is-active {
     color: #fff;
   }
 

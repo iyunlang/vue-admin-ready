@@ -43,12 +43,15 @@
 </script>
 <style lang="scss">
 @import '../../../styles/index.scss';
-$header-trigger-prefix-cls: '#{$namespace}-layout-content';
+$content-prefix-cls: '#{$namespace}-layout-content';
 
-.#{prefix-cls} {
+.#{$content-prefix-cls} {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px;
 
   &.fixed {
     width: 1200px;

@@ -269,12 +269,12 @@ class Tab extends VuexModule {
 
   @Action
   closeTabByKeyAction(key: string) {
-    let index = this.tabsState.findIndex((item) => (item.name) === key);
+    let index = this.tabsState.findIndex((item) => (item.path) === key);
     if(index === -1) {
         for(let i in this.tabsState) {
             if(this.tabsState[i].matched) {
               let subTabs:any[] = this.tabsState[i].matched
-              index = subTabs.findIndex((item) => (item.name ) === key);
+              index = subTabs.findIndex((item) => (item.path ) === key);
               if(index > -1) break;
             }
         }

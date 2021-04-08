@@ -1,21 +1,80 @@
 <template>
   <div class="welcome">
-    首页
+    <h1>
+      欢迎来到 admin-ready
+    </h1>
+
+    <p class="sub-content">此网站为管理后台前端界面解决方案，涉及的功能有动态路由，主题设置，路由权限，登录拦截。</p>
+
+    <p class="sub-content">
+      <span>github</span>
+      <el-link type="success">https://github.com/iyunlang/vue-admin-ready</el-link>
+    </p>
+
+    <p class="sub-content">
+      <span>技术栈</span>
+      <el-tag
+      v-for="item in codes"
+      :key="item.label"
+      type="success"
+      effect="plain">
+      {{ item.label }}
+    </el-tag>
+    </p>
+
+
+    <el-divider></el-divider>
+    <el-row class="code-list" :gutter="20">
+      <el-col :span="6" v-for="item in images" :key="item">
+        <el-image
+          style="width: 100px; height: 100px"
+          :src="item.src"
+          fit="contain"></el-image>
+          <p class="code-sub">{{item.text}}</p>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
+  import { ElImage, ElRow, ElCol, ElDivider, ElTag, ElLink } from 'element-plus';
   export default defineComponent({
     name: 'Welcome',
-    // components: { House },
+    components: { ElImage, ElRow, ElCol, ElDivider, ElTag, ElLink },
+    data() {
+      return {
+        images: [
+          { text: '欢迎添加QQ群：一起学习前端', src: '/@/assets/images/code.png' }
+        ],
+        codes: [
+          { label: 'vue3' },
+          { label: 'typescript' },
+          { label: 'vite' },
+          { label: 'sass' },
+          { label: 'element-plus' },
+        ]
+      }
+    }
   });
 </script>
 <style lang="scss" scoped>
   .welcome {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+      font-size: 16px;
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+    .code-list {
+      text-align: center;
+    }
+    .el-link, .el-tag {
+      margin-left: 12px;
+    }
+    .sub-content {
+      margin-top: 16px;
+    }
   }
 </style>
