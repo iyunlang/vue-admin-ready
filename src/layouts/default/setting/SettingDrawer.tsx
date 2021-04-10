@@ -55,7 +55,7 @@ export default defineComponent({
     return () => (
       <BasicDrawer
         {...attrs} 
-        size={330}
+        // size={330}
         // title={t('layout.setting.drawerTitle')}
         // customClass="setting-drawer"
       >

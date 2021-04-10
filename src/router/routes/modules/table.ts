@@ -21,6 +21,22 @@ const dashboard: AppRouteModule = {
         title: t('routes.table.simpleTable'),
       },
     },
+    {
+      path: 'dropTable',
+      name: 'DropTable',
+      component: () => import('/@/views/dashboard/table/dropTable.vue'),
+      meta: {
+        title: t('routes.table.dropTable'),
+      },
+    },
+    {
+      path: 'editTable',
+      name: 'EditTable',
+      component: () => import('/@/views/dashboard/table/editTable.vue'),
+      meta: {
+        title: t('routes.table.editTable'),
+      },
+    },
   ],
 };
 

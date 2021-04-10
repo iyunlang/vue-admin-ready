@@ -11,6 +11,14 @@ const menu: MenuModule = {
         path: '/simpleTable',
         name: t('routes.table.simpleTable'),
       },
+      {
+        path: '/dropTable',
+        name: t('routes.table.dropTable'),
+      },
+      {
+        path: '/editTable',
+        name: t('routes.table.editTable'),
+      },
     ],
   },
 };

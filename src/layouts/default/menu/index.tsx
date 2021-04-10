@@ -101,7 +101,9 @@ export default defineComponent({
 
             return (
                 <>
-                    {renderHeader()}
+                    {
+                        renderHeader()
+                    }
                     {
                         renderMenu()
                     }

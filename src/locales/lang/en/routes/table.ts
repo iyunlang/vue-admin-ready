@@ -1,4 +1,6 @@
 export default {
   table: 'table',
-  simpleTable: 'simpleTable',
+  simpleTable: 'simple table',
+  dropTable: 'drop table',
+  editTable: 'editable table',
 };

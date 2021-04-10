@@ -1,9 +1,9 @@
 import type { App } from 'vue'
 
 import {
+  ElDrawer,
+  ElDialog,
   ElLoading,
-  // ElMessage,
-  // ElMessageBox,
   ElInput,
   ElButton,
   ElForm,
@@ -14,6 +14,8 @@ import 'element-plus/lib/theme-chalk/index.css';
 export function setupElementPlus(app:App<Element>) {
   app.config.globalProperties.$ELEMENT = {}
   app
+    .use(ElDrawer)
+    .use(ElDialog)
     .use(ElInput)
     .use(ElButton)
     .use(ElForm)
