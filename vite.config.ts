@@ -107,8 +107,13 @@ export default (mode: 'development' | 'production'): UserConfig => {
 
     optimizeDeps: {
       include: [
+        "lodash",
         // 'qs',
-        // 'echarts/map/js/china',
+        'echarts/map/js/china',
+        'echarts/charts',
+        'echarts/renderers',
+        'echarts/core',
+        'echarts/components',
         'element-plus/lib/locale/lang/zh-cn',
         'element-plus/lib/locale/lang/en',
         // '@ant-design/icons-vue',

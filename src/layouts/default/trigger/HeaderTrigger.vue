@@ -1,6 +1,6 @@
 <template>
   <span :class="[prefixCls, theme]" @click="toggleCollapsed">
-    <i class="el-icon-s-fold" v-if="getCollapsed"></i>
+    <i class="el-icon-s-fold" v-if="!getCollapsed"></i>
     <i class="el-icon-s-unfold" v-else></i>
   </span>
 </template>

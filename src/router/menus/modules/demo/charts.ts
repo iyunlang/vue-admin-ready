@@ -2,32 +2,22 @@ import type { MenuModule } from '/@/router/types.d';
 import { t } from '/@/hooks/web/useI18n';
 
 const menu: MenuModule = {
-  orderNo: 500,
+  orderNo: 20,
   menu: {
-    name: t('routes.demo.charts.charts'),
+    name: t('routes.charts.charts'),
     path: '/charts',
     children: [
       {
-        path: 'apexChart',
-        name: t('routes.demo.charts.apexChart'),
+        path: '/simpleCharts',
+        name: t('routes.charts.simpleCharts'),
       },
       {
-        path: 'echarts',
-        name: 'Echarts',
-        children: [
-          {
-            path: 'map',
-            name: t('routes.demo.charts.map'),
-          },
-          {
-            path: 'line',
-            name: t('routes.demo.charts.line'),
-          },
-          {
-            path: 'pie',
-            name: t('routes.demo.charts.pie'),
-          },
-        ],
+        path: '/lineCharts',
+        name: t('routes.charts.lineCharts'),
+      },
+      {
+        path: '/mapCharts',
+        name: t('routes.charts.mapCharts'),
       },
     ],
   },

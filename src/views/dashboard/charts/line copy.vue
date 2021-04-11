@@ -6,7 +6,7 @@
 <script lang="ts">
   import { defineComponent, PropType, ref, Ref, onMounted } from 'vue';
 
-  import { graphic as echartsGraphic } from 'echarts';
+  import echarts from 'echarts';
   import { useECharts } from '/@/hooks/web/useECharts.ts';
   import { getLineData } from './data.ts';
 
@@ -78,7 +78,7 @@
               itemStyle: {
                 normal: {
                   barBorderRadius: 5,
-                  color: new echartsGraphic.LinearGradient(0, 0, 0, 1, [
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: '#14c8d4' },
                     { offset: 1, color: '#43eec6' },
                   ]),
@@ -93,7 +93,7 @@
               barWidth: 10,
               itemStyle: {
                 normal: {
-                  color: new echartsGraphic.LinearGradient(0, 0, 0, 1, [
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     { offset: 0, color: 'rgba(20,200,212,0.5)' },
                     { offset: 0.2, color: 'rgba(20,200,212,0.2)' },
                     { offset: 1, color: 'rgba(20,200,212,0)' },

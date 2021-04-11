@@ -36,7 +36,7 @@ export const itemProps = {
     type: Object as PropType<Menu>,
     default: {},
   },
-  level: propTypes.number,
+  level: propTypes.string,
   parentsLevel: propTypes.string,
   theme: propTypes.oneOf(['dark', 'light']),
   showTitle: propTypes.bool,
@@ -49,6 +49,6 @@ export const contentProps = {
     default: null,
   },
   showTitle: propTypes.bool.def(true),
-  level: propTypes.number.def(0),
+  level: propTypes.string.def(""),
   isHorizontal: propTypes.bool.def(true),
 };

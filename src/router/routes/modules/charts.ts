@@ -29,6 +29,14 @@ const dashboard: AppRouteModule = {
         title: t('routes.charts.lineCharts'),
       },
     },
+    {
+      path: 'mapCharts',
+      name: 'MapCharts',
+      component: () => import('/@/views/dashboard/charts/map.vue'),
+      meta: {
+        title: t('routes.charts.mapCharts'),
+      },
+    },
   ],
 };
 

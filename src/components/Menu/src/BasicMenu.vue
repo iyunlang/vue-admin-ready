@@ -3,8 +3,8 @@
     :collapse="getCollapsed"
     :class="getMenuClass"
     :mode="getIsHorizontal ? 'horizontal' : 'vertical'"
-    :default-active="String(defaultActive)"
-    :default-openeds="defaultOpeneds"
+    :default-active="defaultActive"
+    :default-openeds="getOpenKeys"
     @select="handleMenuSelect"
     @open="handleMenuOpen"
     @close="handleMenuClose"
@@ -15,7 +15,7 @@
         <template v-for="(item, index) in items" :key="item.path">
             <BasicSubMenuItem
             :item="item"
-            :level="index"
+            :level="item.path"
             :theme="theme"
             />
         </template>
@@ -26,13 +26,14 @@
 import type { MenuState } from './types';
 
 import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
-import { defineComponent, computed, unref, reactive, toRefs, ref } from 'vue';
+import { defineComponent, computed, unref, reactive, toRefs, ref, PropType } from 'vue';
 import { ElMenu } from 'element-plus';
 
 import BasicSubMenuItem from './components/BasicSubMenuItem.vue';
 
 import { REDIRECT_NAME } from '/@/router/constant';
 import { getCurrentParentPath } from '/@/router/menus';
+import type { Menu } from '/@/router/types';
 
 import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 import { useDesign } from '/@/hooks/web/useDesign';
@@ -40,6 +41,8 @@ import { useDesign } from '/@/hooks/web/useDesign';
 import { useOpenKeys } from './useOpenKeys.ts';
 
 import { basicProps } from './props';
+
+import { isFunction } from '/@/utils/is'
 
 import { ThemeEnum } from '/@/enums/appEnum';
 import { MenuModeEnum, MenuTypeEnum } from '/@/enums/menuEnum';
@@ -60,9 +63,9 @@ export default defineComponent({
         const { currentRoute } = useRouter();
 
         const menuState = reactive<MenuState>({
-            defaultActive: 0,
-            defaultOpeneds: [],
-            collapsedOpeneds: [],
+            defaultActive: "/home/welcome",
+            defaultOpeneds: ['/home/welcome'],
+            collapsedOpeneds: ['/dashboard', '/dashboard/workbench', '/dashboard/analysis'],
         });
 
         const { prefixCls } = useDesign('basic-menu');
@@ -112,41 +115,44 @@ export default defineComponent({
             handleMenuChange(route);
         }, false);
 
-        function emitMenuSelect(levels: string) {
-            const arr:number[] = levels.split('-').map(item => Number(item))
-            let i = 1
-            let route = props.items[arr[0]]
-            while(i<arr.length) {
-                let k = arr[i];
-                route = route.children?.length?route.children[k]:route;
-                i++
+        async function handleMenuSelect( path: string, openIdxs: string[] ) {
+            let arr = path.split("-")
+            let route = arr[arr.length-1]
+
+            const { beforeClickFn } = props;
+            if (beforeClickFn && isFunction(beforeClickFn)) {
+                const flag = await beforeClickFn(route);
+                if (!flag) return;
             }
-            if(!route || !route.path) return
-            
-            emit('menuSelect', route.path);
-        }
 
-        async function handleMenuSelect( index: string, openIdxs: string[], item ) {
-            // const { beforeClickFn } = props;
-            // if (beforeClickFn && isFunction(beforeClickFn)) {
-            // const flag = await beforeClickFn(index);
-            // if (!flag) return;
-            // }
-
-            emitMenuSelect(index)
-
-            menuState.defaultActive = index
+            emit('menuSelect', route);
+            isClickGo.value = true;
+            menuState.defaultActive = path
             menuState.defaultOpeneds = openIdxs
         }
 
-        async function handleMenuOpen( index: string, openIdxs: string[], item ) {
-            emitMenuSelect(index)
-            handleOpenChange(openIdxs)
+        async function handleMenuOpen( path: string, openIdxs: string[] ) {
+            if(openIdxs.length > 1) return;
+            let items = props.items;
+            for(let index in items) {
+                if(items[index].path === path) {
+                    let route: Menu = items[index];
+                    if(route.children?.length) {
+                        let goPath = route.children[0].path;
+                        if(goPath !== menuState.defaultActive) {
+                            openIdxs.push(goPath)
+                            emit('menuSelect', path);
+                            isClickGo.value = true;
+                            menuState.defaultActive = openIdxs.join('-')
+                            menuState.defaultOpeneds = openIdxs
+                        }
+                    } 
+                } 
+            }
         }
 
-        async function handleMenuClose( index: string, openIdxs: string[], item ) {
-            emitMenuSelect(index)
-            handleOpenChange(openIdxs)
+        async function handleMenuClose( path: string, openIdxs: string[] ) {
+            // handleOpenChange(openIdxs)
         }
 
         async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {

@@ -89,10 +89,12 @@
         if (activeKeyRef.value !== p) {
           activeKeyRef.value = p;
         }
+        
         tabStore.addTabAction(unref(route));
       });
 
       function handleChange(targetName: any) {
+        activeKeyRef.value = targetName.props.name;
         go(targetName.props.name, false);
         // tabStore.closeTabByKeyAction(targetName.props.name)
       }
@@ -109,7 +111,7 @@
         unClose,
         getWrapClass,
         handleChange,
-        activeKeyRef: unref(activeKeyRef),
+        activeKeyRef,
         getTabsState,
         getShowQuick,
         getShowRedo,

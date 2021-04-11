@@ -14,7 +14,7 @@ import {
     TooltipComponent
   } from 'echarts/components'
 
-export function setupElementPlus(app:App<Element>) {
+export function setupEchartsPlus(app:App<Element>) {
   use([
     CanvasRenderer,
     BarChart,

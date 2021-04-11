@@ -2,7 +2,7 @@
   <div class="table">
     <p>常规表格</p>
     <el-table
-      :data="tableData" row-key="id">
+      :data="getLists" row-key="id">
       <el-table-column
         v-for="(item, index) of dropCol"
         :prop="dropCol[index].prop"
@@ -22,7 +22,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, onMounted, reactive, computed, unref, nextTick, ref } from 'vue';
+  import { defineComponent, onMounted, reactive, computed, unref, nextTick, ref, toRaw } from 'vue';
   import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
 
   import Sortable from 'sortablejs'
@@ -128,13 +128,13 @@
           // 渲染数据
           var tableData = reactive<Array<any>>([])
 
+          const getLists = computed(() => toRaw(tableData))
+
           getList(1, size.value);
 
           function getList(page: number, size: number) {
             let end = page*size;
             tableData = tdata.slice(end-size, end>tableData.length?end:tableData.length)
-            console.log(tableData)
-
           }
 
           // 点击分页
@@ -145,6 +145,7 @@
           
       return {
         tableData,
+        getLists,
         tdata,
         size,
         dropCol,

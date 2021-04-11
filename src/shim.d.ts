@@ -17,3 +17,8 @@ declare module '*.tsx' {
     const tsx:any
     export default tsx;
 }
+
+declare module '*.json' {
+    const json:any
+    export default json;
+}

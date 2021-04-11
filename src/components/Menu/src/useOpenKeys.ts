@@ -9,12 +9,12 @@ import { es6Unique } from '/@/utils';
 import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 import { getAllParentPath } from '/@/router/helper/menuHelper';
 
-export const useOpenKeys = (
+export function useOpenKeys(
   menuState: MenuState,
   menus: Ref<MenuType[]>,
   mode: Ref<MenuModeEnum>,
   accordion: Ref<boolean>
-) => {
+) {
   const { getCollapsed } = useMenuSetting();
 
   function setOpenKeys(path: string) {
@@ -24,6 +24,7 @@ export const useOpenKeys = (
     } else {
       menuState.defaultOpeneds = getAllParentPath(menuList, path);
     }
+    menuState.defaultActive = menuState.defaultOpeneds.join('-')
   }
 
   const getOpenKeys = computed(() => {

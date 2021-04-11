@@ -1,6 +1,6 @@
 <template>
-    <BasicMenuItem :level="getParentsLevel" v-if="!menuHasChild(item)" v-bind="$props"></BasicMenuItem>
-    <ElSubmenu v-else :index="getParentsLevel" :class="[`${prefixCls}__level${level}`, theme]">
+    <BasicMenuItem :level="getLevel" :parentsLevel="parentsLevel" v-if="!menuHasChild(item)" v-bind="$props"></BasicMenuItem>
+    <ElSubmenu v-else :index="String(getLevel)" :class="[`${prefixCls}__level${level}`, theme]">
         <template #title>
           <MenuItemContent v-bind="$props" :item="item"/>
         </template>
@@ -8,8 +8,8 @@
         <template v-for="(childrenItem, subIndex) in item.children || []" :key="childrenItem.path">
             <BasicSubMenuItem v-bind="$props" 
             :item="childrenItem" 
-            :parentsLevel="getParentsLevel" 
-            :level="subIndex"
+            :parentsLevel="getLevel" 
+            :level="childrenItem.path"
             >
             </BasicSubMenuItem>
         </template>
@@ -47,12 +47,13 @@ export default defineComponent({
             );
         }
 
-        const getParentsLevel = props.parentsLevel?+'-'+props.level: props.level+''
+
+        const getLevel = props.parentsLevel?props.parentsLevel+'-'+props.level: props.level+''
 
         return {
             menuHasChild,
             prefixCls,
-            getParentsLevel,
+            getLevel,
         }
     }
 })

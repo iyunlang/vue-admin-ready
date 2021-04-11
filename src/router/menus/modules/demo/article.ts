@@ -2,7 +2,7 @@ import type { MenuModule } from '/@/router/types.d';
 import { t } from '/@/hooks/web/useI18n';
 
 const menu: MenuModule = {
-  orderNo: 20,
+  orderNo: 10,
   menu: {
     name: t('routes.article.article'),
     path: '/article',

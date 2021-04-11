@@ -82,7 +82,7 @@ const setDocumentTitle = (title: string) => {
   // 兼容
   if (regex.test(ua) && /ip(hone|od|ad)/i.test(ua)) {
     const i = document.createElement('iframe');
-    i.src = '/favicon.ico';
+    // i.src = '/favicon.ico';
     i.style.display = 'none';
     i.onload = function () {
       setTimeout(function () {
